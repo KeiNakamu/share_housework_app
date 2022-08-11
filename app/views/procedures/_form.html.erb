@@ -1,0 +1,41 @@
+<%= form_with(model: procedure, local: true) do |form| %>
+  <% if procedure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(procedure.errors.count, "error") %> prohibited this procedure from being saved:</h2>
+
+      <ul>
+        <% procedure.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(model: [@article, @procedure], local: true) do |form| %>
+
+    <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+      <%= form.hidden_field :image_cache %>
+    </div>
+
+      <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
+
+      <div class="field">
+      <%= form.label :date %>
+      <%= form.date_field :date %>
+    </div>
+
+      <div class="field">
+      <%= form.label :deadline %>
+      <%= form.date_field :deadline %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

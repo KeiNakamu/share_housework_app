@@ -1,2 +1,5 @@
-<h1>Procedures#new</h1>
-<p>Find me in app/views/procedures/new.html.erb</p>
+<h1>New Procedure</h1>
+
+<%= render 'form', procedure: @procedure %>
+
+<%= link_to 'Back', procedures_path %>

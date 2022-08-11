@@ -1,5 +1,5 @@
-<%= form_with(model: article, local: true) do |form| %>
-  <% if article.errors.any? %>
+<%= form_with(model: @article, local: true) do |form| %>
+  <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
@@ -18,13 +18,41 @@
 
   <div class="field">
     <%= form.label :image %>
-    <%= form.text_area :image %>
+    <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
   </div>
 
   <div class="field">
     <%= form.label :status %>
     <%= form.number_field :status %>
   </div>
+
+  <h3>Procedure</h3>
+
+      <%= form.fields_for :procedures  do |procedure| %>
+
+    <div class="field">
+      <%= procedure.label :image %>
+      <%= procedure.file_field :image %>
+      <%#= procedure.hidden_field :image_cache %>
+    </div>
+
+      <div class="field">
+      <%= procedure.label :content %>
+      <%= procedure.text_area :content %>
+    </div>
+
+      <div class="field">
+      <%= procedure.label :date %>
+      <%= procedure.date_field :date %>
+    </div>
+
+      <div class="field">
+      <%= procedure.label :deadline %>
+      <%= procedure.date_field :deadline %>
+    </div>
+  <% end %>
+
 
   <div class="actions">
     <%= form.submit %>

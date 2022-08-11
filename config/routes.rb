@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  resources :articles
-  resources :procedures
+  resources :articles do
+    resources :procedures
+  end
 end
