@@ -16,7 +16,7 @@
     <% @articles.each do |article| %>
       <tr>
         <td><%= article.title %></td>
-        <td><%= article.image %></td>
+        <td><%= image_tag article.image.url if article.image.present? %></td>
         <td><%= article.status %></td>
       </tr>
       <tr>
