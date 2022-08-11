@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+field img {
+  width: 30%;
+  height: 30%;
+  text-align: center;
+}
+
+img {
+  width: 30%;
+  height: 30%;
+  text-align: center;
+}
+
+td.image {
+  text-align: center;
+}

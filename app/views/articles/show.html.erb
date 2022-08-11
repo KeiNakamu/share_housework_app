@@ -29,7 +29,7 @@
   </p>
   <p>
     <strong>:deadline</strong>
-    <%= procedure.deadline %>
+    <%= procedure.deadline.strftime("%Y年%m月%d日") %>
   </p>
 <% end %>
 <%= link_to 'Edit', edit_article_path(@article) %> |
