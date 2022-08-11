@@ -40,6 +40,6 @@ class ProceduresController < ApplicationController
     end
 
     def procedure_params
-      params.require(:procedure).permit(:image, :content, :date, :deadline)
+      params.require(:procedure).permit(:image, :image_cache, :content, :date, :deadline)
     end
 end

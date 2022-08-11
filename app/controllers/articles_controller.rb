@@ -67,6 +67,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :image, :status, procedures_attributes: [:image, :content, :date, :deadline])
+      params.require(:article).permit(:title, :image, :image_cache, :status, procedures_attributes: [:image, :content, :date, :deadline, :article_id, :id])
     end
 end
