@@ -4,16 +4,33 @@
   <strong>Title:</strong>
   <%= @article.title %>
 </p>
-
 <p>
   <strong>Image:</strong>
   <%= @article.image %>
 </p>
-
 <p>
   <strong>Status:</strong>
   <%= @article.status %>
 </p>
 
+<% @procedures.each do |procedure|%>
+  <h3>Procedure</h3>
+  <p>
+    <strong>:image</strong>
+    <%= procedure.image %>
+  </p>
+  <p>
+    <strong>:content</strong>
+    <%= procedure.content %>
+  </p>
+  <p>
+    <strong>:date</strong>
+    <%= procedure.date.strftime("%Y年%m月%d日") %>
+  </p>
+  <p>
+    <strong>:deadline</strong>
+    <%= procedure.deadline %>
+  </p>
+<% end %>
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

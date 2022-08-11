@@ -8,11 +8,13 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
+    @procedures = @article.procedures
   end
 
   # GET /articles/new
   def new
     @article = Article.new
+    @article.procedures.build
   end
 
   # GET /articles/1/edit
@@ -65,6 +67,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :image, :status)
+      params.require(:article).permit(:title, :image, :status, procedures_attributes: [:image, :content, :date, :deadline])
     end
 end
