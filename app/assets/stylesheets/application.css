@@ -28,3 +28,8 @@ img {
 td.image {
   text-align: center;
 }
+
+.delete-marker-fix {
+  list-style: none;
+  padding-left: 0;
+}
