@@ -10,6 +10,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1 or /articles/1.json
   def show
     @procedures = @article.procedures
+    @comments = @article.comments
+    @comment = @article.comments.build
   end
 
   # GET /articles/new
