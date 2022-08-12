@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
 
   def create
-    @blog = Blog.find(params[:blog_id])
-    @comment = @blog.comments.build(comment_params)
+    @article = Article.find(params[:article_id])
+    @comment = @article.comments.build(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to blog_path(@blog) }
+        format.html { redirect_to article_path(@article) }
       else
-        format.html { redirect_to blog_path(@blog), notice: '投稿できませんでした...' }
+        format.html { redirect_to article_path(@article), notice: '投稿できませんでした...' }
       end
     end
   end
@@ -16,4 +16,5 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
-  endend
+  end
+end
