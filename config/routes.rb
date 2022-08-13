@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'articles#index'
   resources :articles do
     resources :procedures
+    resources :comments
   end
 
   if Rails.env.development?
