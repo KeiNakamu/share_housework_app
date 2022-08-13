@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            user:
+              required: "ユーザーは必須です"
