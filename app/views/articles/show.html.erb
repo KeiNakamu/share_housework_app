@@ -31,6 +31,10 @@
   </p>
 <% end %>
 
+<div id = "like_<%= @article.id %>">
+  <%= render partial: "likes/like", locals: { article: @article } %>
+</div>
+
 <p>コメント一覧</p>
 
 <div id="comments_area">

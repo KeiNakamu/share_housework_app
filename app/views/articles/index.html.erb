@@ -7,6 +7,7 @@
       <th>Title</th>
       <th>Image</th>
       <th>Status</th>
+      <th>Like</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,12 +15,13 @@
   <tbody>
     <% @articles.each do |article| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= article.user.name %></td>
         <td><%= article.title %></td>
         <td class="image">
         <%= image_tag article.image.url if article.image.present? %>
         </td>
         <td><%= article.status %></td>
+        <td><%= article.liked_users.count %></td>
       </tr>
       <tr>
         <td><%= link_to 'Show', article %></td>

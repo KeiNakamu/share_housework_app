@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+
 field img {
   width: 30%;
   height: 30%;

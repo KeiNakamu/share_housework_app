@@ -28,6 +28,8 @@
     <%= form.number_field :status %>
   </div>
 
+  <%= form.hidden_field :user_id, :value => current_user.id%>
+
   <h3>Procedure</h3>
 
       <%= form.fields_for :procedures  do |procedure| %>
