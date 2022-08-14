@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Title</th>
       <th>Image</th>
       <th>Status</th>
@@ -13,6 +14,7 @@
   <tbody>
     <% @articles.each do |article| %>
       <tr>
+        <td><%= user.name %></td>
         <td><%= article.title %></td>
         <td class="image">
         <%= image_tag article.image.url if article.image.present? %>
