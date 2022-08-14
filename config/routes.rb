@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :articles do
     resources :procedures
     resources :comments
+    resources :likes, only: [:create, :destroy]
   end
 
   if Rails.env.development?

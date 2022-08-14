@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_articles, through: :likes, source: :article
 
-  def liked_by?(post_id)
-    likes.where(post_id: post_id).exists?
+  def liked_by?(article_id)
+    likes.where(article_id: article_id).exists?
   end
 end
