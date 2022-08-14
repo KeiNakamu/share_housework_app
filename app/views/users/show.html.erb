@@ -1,0 +1,12 @@
+<% if user_signed_in? && @user == current_user %>
+  <h1>マイページ</h1>
+<% else %>
+  <h1><%= @user.name %>さんのページ</h1>
+<% end %>
+
+<h3>ユーザー名: <%= @user.name %></h3>
+<%= @user.image %>
+
+<% if user_signed_in? && @user == current_user %>
+  <%= link_to "プロフィール編集", edit_user_path(current_user) %>
+<% end %>
