@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
     @procedures = @article.procedures
     @comments = @article.comments
     @comment = @article.comments.build
+    @favorite = current_user.favorites.find_by(article_id: @article.id)
   end
 
   # GET /articles/new
