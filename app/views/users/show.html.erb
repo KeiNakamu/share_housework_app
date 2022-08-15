@@ -2,6 +2,7 @@
   <h1>マイページ</h1>
 <% else %>
   <h1><%= @user.name %>さんのページ</h1>
+  <%= render 'follow_form', user: @user %>
 <% end %>
 
 <h3>ユーザー名: <%= @user.name %></h3>
