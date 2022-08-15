@@ -6,7 +6,9 @@ class User < ApplicationRecord
   has_many :liked_articles, through: :likes, source: :article
   has_many :favorites, dependent: :destroy
   has_many :active_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
-has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
+  has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
   def liked_by?(article_id)
     likes.where(article_id: article_id).exists?
