@@ -5,7 +5,13 @@
 <% end %>
 
 <h3>ユーザー名: <%= @user.name %></h3>
-<%= @user.image %>
+<% if @user.image? %>
+  <%= image_tag @user.image.url, size: '200x200' %>
+<% else %>
+  <%= image_tag 'icon.jpeg', size: '200x200' %>
+<% end %>
+
+<br>
 
 <% if user_signed_in? && @user == current_user %>
   <%= link_to "プロフィール編集", edit_user_path(current_user) %>
