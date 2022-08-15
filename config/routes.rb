@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'relationships/create'
   get 'relationships/destroy'
   devise_for :users
-  resources :users, only: %i[ show edit update ]
+  resources :users, only: %i[ index show edit update ]
   resources :relationships, only: [:create, :destroy]
   root 'articles#index'
   resources :articles do
