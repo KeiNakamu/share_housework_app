@@ -9,4 +9,12 @@ class User < ApplicationRecord
   def liked_by?(article_id)
     likes.where(article_id: article_id).exists?
   end
+
+  def follow!(other_user)
+    active_relationships.create!(followed_id: other_user.id)
+  end
+
+  def following?(other_user)
+    active_relationships.find_by(followed_id: other_user.id)
+  end
 end
