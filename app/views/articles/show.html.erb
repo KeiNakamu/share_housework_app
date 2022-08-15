@@ -43,6 +43,8 @@
   <%= render partial: "likes/like", locals: { article: @article } %>
 </div>
 
+<%= render 'users/follow_form', user: @article.user %>
+
 <p>コメント一覧</p>
 
 <div id="comments_area">
