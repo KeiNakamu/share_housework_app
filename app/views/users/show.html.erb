@@ -30,8 +30,8 @@
       <tbody>
         <% @user.articles.each do |article| %>
           <tr class = "task_row">
-            <td><%= article.title %></td>
-            <td><%= image_tag article.image.url if article.image.present? %></td>
+            <td><%= link_to article.title, article %></td>
+            <td><%= link_to (image_tag article.image.url if article.image.present?), article %></td>
             <td><%= article.status %></td>
             <td><%= article.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
