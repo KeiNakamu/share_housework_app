@@ -13,6 +13,8 @@
     <%= link_to "ホーム", root_path %>
     <% if user_signed_in? %>
       <%= link_to "マイページ", user_path(current_user.id) %>
+      <%= link_to "フォローリスト" %>
+      <%= link_to "お気に入り" %>
       <%= link_to 'ユーザー一覧', users_path  %>
       <%= link_to "新規投稿", new_article_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
