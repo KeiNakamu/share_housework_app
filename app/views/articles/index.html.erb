@@ -18,7 +18,7 @@
         <td><%= link_to article.user.name, user_path(article.user) %></td>
         <td><%= article.title %></td>
         <td class="image">
-        <%= image_tag article.image.url if article.image.present? %>
+        <%= link_to (image_tag article.image.url if article.image.present?), article %>
         </td>
         <td><%= article.status %></td>
         <td><%= article.liked_users.count %></td>
