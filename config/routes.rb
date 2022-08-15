@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
-  get 'relationships/destroy'
   devise_for :users
   resources :users, only: %i[ index show edit update ]
   resources :relationships, only: [:create, :destroy]
