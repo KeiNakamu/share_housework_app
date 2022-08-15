@@ -15,9 +15,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id), notice: "ユーザーの内容を更新しました"
+    else
+      flash.now[:danger] = "ユーザーを更新できませんでした"
+      render :edit
+    end
   end
 
   private
