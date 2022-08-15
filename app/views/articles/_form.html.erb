@@ -36,7 +36,6 @@
 
     <div class="field">
       <%= procedure.label :image %>
-      <%#= image_tag(procedure.image.url) if procedure.image && procedure.image.url %>
       <%= procedure.file_field :image %>
       <%= procedure.hidden_field :image_cache %>
     </div>
