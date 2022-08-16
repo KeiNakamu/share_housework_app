@@ -32,9 +32,7 @@
 
   <h3>Procedure</h3>
 
-  <% n = 0 %>
-  <%= form.fields_for :procedure  do |procedure| %>
-  <h3><strong>手順<%= n +=1 %></strong></h3>
+  <%= form.fields_for :procedures local: true, id: 'js-procedure-field'  do |procedure| %>
 
   <div class="field">
     <%= procedure.label :image %>
@@ -57,6 +55,13 @@
     <%= procedure.date_field :deadline %>
   </div>
   <% end %>
+
+  <div class="add-botton-box">
+  <%= button_to_add_association "追加ボタン", form, :procedures, class: 'add_fields', id: 'add-btn', data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'after' } %>
+  </div>
+
+  <div id="detail-association-insertion-point"></div>
+
 
 
   <div class="actions">
