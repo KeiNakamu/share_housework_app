@@ -19,6 +19,8 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
+    @procedure = Procedure.find(params[:id])
   end
 
   def create
@@ -49,6 +51,6 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :image, :image_cache, :status, :user_id, procedures_attributes: [:image, :content, :date, :deadline, :article_id, :user_id, :id, :_destroy])
+      params.require(:article).permit(:title, :image, :image_cache, :status, :deadline, :date, :user_id, procedures_attributes: [:image, :content, :article_id, :user_id, :_destroy, :id])
     end
 end
