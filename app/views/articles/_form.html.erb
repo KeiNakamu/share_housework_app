@@ -32,32 +32,39 @@
 
   <h3>Procedure</h3>
 
-  <%= form.fields_for :procedures local: true, id: 'js-procedure-field'  do |procedure| %>
+      <%= form.fields_for :procedures, local: true, id: 'js-procedure-field'  do |f| %>
 
-  <div class="field">
-    <%= procedure.label :image %>
-    <%= procedure.file_field :image %>
-    <%= procedure.hidden_field :image_cache %>
-  </div>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
 
-  <div class="field">
-    <%= procedure.label :content %>
-    <%= procedure.text_area :content %>
-  </div>
+      <div class="field">
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+    </div>
 
-  <div class="field">
-    <%= procedure.label :date %>
-    <%= procedure.date_field :date %>
-  </div>
+      <div class="field">
+      <%= f.label :date %>
+      <%= f.date_field :date %>
+    </div>
 
-  <div class="field">
-    <%= procedure.label :deadline %>
-    <%= procedure.date_field :deadline %>
-  </div>
+      <div class="field">
+      <%= f.label :deadline %>
+      <%= f.date_field :deadline %>
+    </div>
   <% end %>
 
   <div class="add-botton-box">
-  <%= button_to_add_association "追加ボタン", form, :procedures, class: 'add_fields', id: 'add-btn', data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'after' } %>
+    <%= link_to_add_association "追加ボタン", form, :procedures,
+    class: 'add_fields',
+    id: 'add-btn',
+    data: {
+      association_insertion_node: '#detail-association-insertion-point',
+      association_insertion_method: 'after'
+      }
+    %>
   </div>
 
   <div id="detail-association-insertion-point"></div>
