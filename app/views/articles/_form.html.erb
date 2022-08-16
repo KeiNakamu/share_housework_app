@@ -44,16 +44,6 @@
       <%= f.label :content %>
       <%= f.text_area :content %>
     </div>
-
-      <div class="field">
-      <%= f.label :date %>
-      <%= f.date_field :date %>
-    </div>
-
-      <div class="field">
-      <%= f.label :deadline %>
-      <%= f.date_field :deadline %>
-    </div>
   <% end %>
 
   <div class="add-botton-box">
@@ -69,7 +59,17 @@
 
   <div id="detail-association-insertion-point"></div>
 
+<%= form.fields_for :procedures, local: true, id: 'js-procedure-field'  do |f| %>
+      <div class="field">
+      <%= f.label :date %>
+      <%= f.date_field :date %>
+    </div>
 
+      <div class="field">
+      <%= f.label :deadline %>
+      <%= f.date_field :deadline %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
