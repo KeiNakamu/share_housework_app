@@ -21,6 +21,8 @@
     <strong>:content</strong>
     <%= procedure.content %>
   </p>
+<% end %>
+<% @procedures.each do |procedure|%>
   <p>
     <strong>:date</strong>
     <%= procedure.date.strftime("%Y年%m月%d日") %>
