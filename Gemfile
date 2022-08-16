@@ -37,3 +37,4 @@ gem 'devise'
 gem 'rexml'
 gem 'letter_opener_web'
 gem 'devise-i18n'
+gem "cocoon"
