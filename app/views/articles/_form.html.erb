@@ -28,23 +28,19 @@
     <%= form.number_field :status %>
   </div>
 
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_field :deadline %>
+  </div>
+
   <%= form.hidden_field :user_id, :value => current_user.id%>
 
   <h3>Procedure</h3>
-
-      <%= form.fields_for :procedures, local: true, id: 'js-procedure-field'  do |f| %>
-
-    <div class="field">
-      <%= f.label :image %>
-      <%= f.file_field :image %>
-      <%= f.hidden_field :image_cache %>
-    </div>
-
-      <div class="field">
-      <%= f.label :content %>
-      <%= f.text_area :content %>
-    </div>
-  <% end %>
 
   <div class="add-botton-box">
     <%= link_to_add_association "追加ボタン", form, :procedures,
@@ -57,19 +53,21 @@
     %>
   </div>
 
-  <div id="detail-association-insertion-point"></div>
+    <%= form.fields_for :procedures, local: true, id: 'js-procedure-field'  do |f| %>
 
-<%= form.fields_for :procedures, local: true, id: 'js-procedure-field'  do |f| %>
-      <div class="field">
-      <%= f.label :date %>
-      <%= f.date_field :date %>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
     </div>
 
-      <div class="field">
-      <%= f.label :deadline %>
-      <%= f.date_field :deadline %>
+    <div class="field">
+      <%= f.label :content %>
+      <%= f.text_area :content %>
     </div>
   <% end %>
+
+  <div id="detail-association-insertion-point"></div>
 
   <div class="actions">
     <%= form.submit %>
