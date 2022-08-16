@@ -11,8 +11,9 @@
   <%= @article.status %>
 </p>
 
+<% n = 0 %>
 <% @procedures.each do |procedure|%>
-  <h3>Procedure</h3>
+  <h4>手順<%= n += 1 %></h4>
   <p>
     <strong>:image</strong>
     <%= image_tag procedure.image.url %>
@@ -22,16 +23,16 @@
     <%= procedure.content %>
   </p>
 <% end %>
-<% @procedures.each do |procedure|%>
-  <p>
-    <strong>:date</strong>
-    <%= procedure.date.strftime("%Y年%m月%d日") %>
-  </p>
-  <p>
-    <strong>:deadline</strong>
-    <%= procedure.deadline.strftime("%Y年%m月%d日") %>
-  </p>
-<% end %>
+
+<p>
+  <strong>:date</strong>
+  <%= @article.date.strftime("%Y年%m月%d日") %>
+</p>
+
+<p>
+  <strong>:deadline</strong>
+  <%= @article.deadline.strftime("%Y年%m月%d日") %>
+</p>
 
 <%= render 'favorites/form', article: @article.id %>
 
