@@ -15,10 +15,10 @@
     <% @favorites.each do |favorite| %>
 
       <tr>
-        <td><%= favorite.user.name %></td>
+        <td><%= link_to favorite.article.user.name, user_path(favorite.user) %></td>
         <td><%= favorite.article.title %></td>
         <td class="image">
-        <%= link_to (image_tag favorite.article.image.url if favorite.article.present?), @article %>
+        <%= link_to (image_tag favorite.article.image.url if favorite.article.present?), favorite.article %>
         </td>
       </tr>
     <% end %>
