@@ -1,5 +1,13 @@
 <h1>Articles</h1>
 
+<h2>検索</h2>
+<%= search_form_for @q, url: search_articles_path do |f| %>
+  <%= f.label :title_cont, 'タイトル' %>
+  <%= f.search_field :name_cont %>
+  <%= f.submit '検索' %>
+<% end %>
+<br><hr>
+
 <table>
   <thead>
     <tr>
