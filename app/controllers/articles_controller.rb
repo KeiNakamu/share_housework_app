@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   private
 
   def set_q
-    @q = User.ransack(params[:q])
+    @q = Article.ransack(params[:q])
   end
 
   def set_article

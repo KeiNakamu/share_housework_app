@@ -1,13 +1,4 @@
-<h1>Articles</h1>
-
-<h2>検索</h2>
-<%= search_form_for @q, url: search_articles_path do |f| %>
-  <%= f.label :title_cont, 'タイトル' %>
-  <%= f.search_field :title_cont %>
-  <%= f.submit '検索' %>
-<% end %>
-<br><hr>
-
+<h1>検索結果</h1>
 <table>
   <thead>
     <tr>
@@ -21,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @articles.each do |article| %>
+    <% @results.each do |article| %>
       <tr>
         <td><%= link_to article.user.name, user_path(article.user) %></td>
         <td><%= article.title %></td>
@@ -39,7 +30,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Article', new_article_path %>
