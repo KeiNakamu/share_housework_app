@@ -61,6 +61,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :image, :image_cache, :status, :deadline, :date, :user_id, procedures_attributes: [:image, :content, :article_id, :user_id, :_destroy, :id])
+    params.require(:article).permit(:title, :image, :image_cache, { label_ids: [] }, :status, :deadline, :date, :user_id, procedures_attributes: [:image, :content, :article_id, :user_id, :_destroy, :id])
   end
 end
