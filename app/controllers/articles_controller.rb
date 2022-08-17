@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ new edit update destroy ]
+  before_action :set_q, only: [:index, :search]
 
   def index
     @articles = Article.all
@@ -45,12 +46,21 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: "Article was successfully destroyed."
   end
 
-  private
-    def set_article
-      @article = Article.find(params[:id])
-    end
+  def search
+    @results = @q.result
+  end
 
-    def article_params
-      params.require(:article).permit(:title, :image, :image_cache, :status, :deadline, :date, :user_id, procedures_attributes: [:image, :content, :article_id, :user_id, :_destroy, :id])
-    end
+  private
+
+  def set_q
+    @q = User.ransack(params[:q])
+  end
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :image, :image_cache, :status, :deadline, :date, :user_id, procedures_attributes: [:image, :content, :article_id, :user_id, :_destroy, :id])
+  end
 end
