@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
     @procedures = @article.procedures
     @comments = @article.comments
     @comment = @article.comments.build
-    @favorite = current_user.favorites.find_by(article_id: @article.id)
+    @favorite = current_user.favorites.find_by(article_id: @article.id) if  user_signed_in?
   end
 
   def new

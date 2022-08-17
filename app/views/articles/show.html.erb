@@ -34,7 +34,8 @@
   <%= @article.deadline.strftime("%Y年%m月%d日") %>
 </p>
 
-<%= render 'favorites/form', article: @article.id %>
+<% if user_signed_in? %>
+  <%= render 'favorites/form', article: @article.id %>
 
 <div id = "like_<%= @article.id %>">
   <%= render partial: "likes/like", locals: { article: @article } %>
@@ -43,6 +44,7 @@
 <%= link_to @article.user.name, user_path(@article.user) %>
 
 <%= render 'users/follow_form', user: @article.user %>
+<% end %>
 
 <p>コメント一覧</p>
 
