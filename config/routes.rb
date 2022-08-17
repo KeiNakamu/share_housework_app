@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :likes, only: [:create, :destroy]
   end
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: [:index, :create, :destroy]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
