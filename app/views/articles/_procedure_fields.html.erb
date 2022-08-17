@@ -1,0 +1,15 @@
+<div class="nested-fields">
+  <h3>手順</h3>
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+
+      <div class="field">
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+    </div>
+
+  <%= link_to_remove_association "削除", f %>
+</div>

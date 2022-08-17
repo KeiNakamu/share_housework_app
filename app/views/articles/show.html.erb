@@ -11,8 +11,9 @@
   <%= @article.status %>
 </p>
 
+<% n = 0 %>
 <% @procedures.each do |procedure|%>
-  <h3>Procedure</h3>
+  <h4>手順<%= n += 1 %></h4>
   <p>
     <strong>:image</strong>
     <%= image_tag procedure.image.url %>
@@ -21,17 +22,20 @@
     <strong>:content</strong>
     <%= procedure.content %>
   </p>
-  <p>
-    <strong>:date</strong>
-    <%= procedure.date.strftime("%Y年%m月%d日") %>
-  </p>
-  <p>
-    <strong>:deadline</strong>
-    <%= procedure.deadline.strftime("%Y年%m月%d日") %>
-  </p>
 <% end %>
 
-<%= render 'favorites/form', article: @article.id %>
+<p>
+  <strong>:date</strong>
+  <%= @article.date.strftime("%Y年%m月%d日") %>
+</p>
+
+<p>
+  <strong>:deadline</strong>
+  <%= @article.deadline.strftime("%Y年%m月%d日") %>
+</p>
+
+<% if user_signed_in? %>
+  <%= render 'favorites/form', article: @article.id %>
 
 <div id = "like_<%= @article.id %>">
   <%= render partial: "likes/like", locals: { article: @article } %>
@@ -40,6 +44,7 @@
 <%= link_to @article.user.name, user_path(@article.user) %>
 
 <%= render 'users/follow_form', user: @article.user %>
+<% end %>
 
 <p>コメント一覧</p>
 

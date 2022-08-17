@@ -2,75 +2,55 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ new edit update destroy ]
 
-  # GET /articles or /articles.json
   def index
     @articles = Article.all
   end
 
-  # GET /articles/1 or /articles/1.json
   def show
     @procedures = @article.procedures
     @comments = @article.comments
     @comment = @article.comments.build
-    @favorite = current_user.favorites.find_by(article_id: @article.id)
+    @favorite = current_user.favorites.find_by(article_id: @article.id) if  user_signed_in?
   end
 
-  # GET /articles/new
   def new
     @article = Article.new
-    @article.procedures.build
+    @procedure = @article.procedures.build
   end
 
-  # GET /articles/1/edit
   def edit
+    @article = Article.find(params[:id])
+    @procedure = Procedure.find(params[:id])
   end
 
-  # POST /articles or /articles.json
   def create
     @article = Article.new(article_params)
-
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    if @article.save
+      redirect_to article_path(@article), notice: "Article was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /articles/1 or /articles/1.json
   def update
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to article_url(@article), notice: "Article was successfully updated." }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    if @article.update(article_params)
+      redirect_to article_url(@article), notice: "Article was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /articles/1 or /articles/1.json
   def destroy
     @article.destroy
-
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to articles_url, notice: "Article was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :image, :image_cache, :status, :user_id, procedures_attributes: [:image, :content, :date, :deadline, :article_id, :id])
+      params.require(:article).permit(:title, :image, :image_cache, :status, :deadline, :date, :user_id, procedures_attributes: [:image, :content, :article_id, :user_id, :_destroy, :id])
     end
 end
