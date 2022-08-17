@@ -5,6 +5,13 @@
   <%= render 'follow_form', user: @user %>
 <% end %>
 
+<% if user_signed_in? && @user == current_user %>
+  <%= link_to "プロフィール編集", edit_user_path(current_user) %><br>
+  <%= link_to "フォロー", followings_user_path(@user) %><br>
+  <%= link_to "フォロワー", followers_user_path(@user) %><br>
+  <%= link_to "お気に入り" %>
+<% end %>
+
 <h3>ユーザー名: <%= @user.name %></h3>
 <% if @user.image? %>
   <%= image_tag @user.image.url, size: '200x200' %>
@@ -40,9 +47,3 @@
     </table>
   </div>
 </div>
-
-<br>
-
-<% if user_signed_in? && @user == current_user %>
-  <%= link_to "プロフィール編集", edit_user_path(current_user) %>
-<% end %>

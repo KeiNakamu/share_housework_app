@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[ followings followers ]
   before_action :authenticate_user!
 
   def index
@@ -22,6 +23,14 @@ class UsersController < ApplicationController
       flash.now[:danger] = "ユーザーを更新できませんでした"
       render :edit
     end
+  end
+
+  def followings
+    @users = @user.following
+  end
+
+  def followers
+    @users = @user.followers
   end
 
   private
