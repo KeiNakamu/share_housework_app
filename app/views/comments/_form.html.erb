@@ -19,5 +19,7 @@
     <%= form.submit %>
   </div>
 
-  <%= form.hidden_field :user_id, :value => current_user.id%>
+  <% if user_signed_in? %>
+    <%= form.hidden_field :user_id, :value => current_user.id%>
+  <% end %>
 <% end %>
