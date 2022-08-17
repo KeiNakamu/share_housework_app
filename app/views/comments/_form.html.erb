@@ -19,7 +19,5 @@
     <%= form.submit %>
   </div>
 
-  <% if user_signed_in? && @user == current_user %>
   <%= form.hidden_field :user_id, :value => current_user.id%>
-  <% end %>
 <% end %>
