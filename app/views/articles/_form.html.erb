@@ -62,20 +62,6 @@
     %>
   </div>
 
-    <%= form.fields_for :procedures, local: true, id: 'js-procedure-field'  do |f| %>
-
-    <div class="field">
-      <%= f.label :image %>
-      <%= f.file_field :image %>
-      <%= f.hidden_field :image_cache %>
-    </div>
-
-    <div class="field">
-      <%= f.label :content %>
-      <%= f.text_area :content %>
-    </div>
-  <% end %>
-
   <div id="detail-association-insertion-point"></div>
 
   <div class="actions">
