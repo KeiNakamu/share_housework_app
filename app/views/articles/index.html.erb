@@ -6,10 +6,6 @@
   <%= f.search_field :title_cont %>
   <%= f.submit '検索' %>
 <% end %>
-<%= form_with url: articles_path, method: :get, local: true do |form| %>
-  <%= form.select("category_id", Category.pluck(:name, :id), { include_blank: true }) %>
-  <%= form.submit 'Search', name: nil %>
-<% end %>
 <br><hr>
 
 <table>
@@ -34,9 +30,9 @@
           <%= link_to (image_tag article.image.url if article.image.present?), article %>
         </td>
         <td>
-          <%# article.categories.each do |category| %>
-            <%#= category.name %>
-          <%# end %>
+          <% article.categories.each do |category| %>
+            <%= category.name %>
+          <% end %>
         </td>
         <td><%= article.status %></td>
         <td><%= article.liked_users.count %></td>

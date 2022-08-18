@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_q, only: [:index, :search]
 
   def index
-    @articles = Article.all.includes(@user)
+    @articles = Article.all
   end
 
   def show
@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
     if @article.save
       redirect_to article_path(@article), notice: "Article was successfully created."
     else
@@ -61,6 +61,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title, :image, :image_cache, :status, :deadline, :date, :user_id, { category_ids: [] }, procedures_attributes: [:image, :content, :article_id, :user_id, :_destroy, :id])
+    params.require(:article).permit(:title, :image, :image_cache, :status, :deadline, :date, :user_id, { category_ids: [] }, procedures_attributes: [:image, :image_cache, :content, :article_id, :user_id, :_destroy, :id])
   end
 end
