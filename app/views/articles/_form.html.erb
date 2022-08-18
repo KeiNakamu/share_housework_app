@@ -24,7 +24,12 @@
   </div>
 
   <div class="field">
-    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+    <%= form.label :category %>
+    <br>
+    <% Category.all.each do |category| %>
+      <%= form.check_box :category_ids, { multiple: true, checked: category[:checked], disabled: category[:disabled], include_hidden: false }, category[:id] %>
+      <%= form.label :category_ids, category.name, class:"label-bg", value: category[:id]%>
+    <% end %>
   </div>
 
   <div class="field">

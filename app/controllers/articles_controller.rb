@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_q, only: [:index, :search]
 
   def index
-    @articles = Article.all
+    @articles = Article.all.includes(@user)
   end
 
   def show
@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    @procedure = Procedure.find(params[:id])
+    # @procedure = Procedure.find(params[:id])
   end
 
   def create
