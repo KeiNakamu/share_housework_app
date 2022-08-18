@@ -6,6 +6,8 @@ class Article < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
+  has_many :article_categories, dependent: :destroy
+  has_many :categories, through: :article_categories, source: :category
   
   mount_uploader :image, ImageUploader
 
