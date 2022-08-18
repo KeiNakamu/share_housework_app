@@ -1,10 +1,14 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ new edit update destroy ]
-  before_action :set_q, only: [:index, :search]
+  # before_action :set_q, only: [:index, :search]
 
   def index
-    @articles = Article.all
+    @article_search = Article.ransack(params[:q])
+    @articles = @article_search.result
+
+    @category_search = Category.ransack(params[:p], search_key: :p)
+    @categorys = @category_search.result
   end
 
   def show
@@ -46,15 +50,16 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: "Article was successfully destroyed."
   end
 
-  def search
-    @results = @q.result
-  end
+  # def search
+  #   @results = @q.result
+  # end
 
   private
 
-  def set_q
-    @q = Article.ransack(params[:q])
-  end
+  # def set_q
+  #   @q = Article.ransack(params[:q])
+  #   @p = Category.ransack(params[:p])
+  # end
 
   def set_article
     @article = Article.find(params[:id])
