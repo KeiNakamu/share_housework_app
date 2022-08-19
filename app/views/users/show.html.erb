@@ -13,6 +13,9 @@
 <% end %>
 
 <h3>ユーザー名: <%= @user.name %></h3>
+<% if user_signed_in? && @user == current_user %>
+  <h3>メールアドレス: <%= @user.email %></h3>
+<% end %>
 <% if @user.image? %>
   <%= image_tag @user.image.url, size: '200x200' %>
 <% else %>
