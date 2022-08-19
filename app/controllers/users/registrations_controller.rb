@@ -2,6 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :ensure_normal_user, only: %i[update destroy]
+  before_action :ensure_admin_user, only: %i[update destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -40,6 +41,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
     end
   end
+
+  def ensure_admin_user
+    if resource.email == 'admin_guest@example.com'
+      redirect_to root_path, alert: '管理者ゲストユーザーの更新・削除はできません。'
+    end
+  end
+
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
