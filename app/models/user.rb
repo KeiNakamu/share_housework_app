@@ -11,6 +11,14 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   mount_uploader :image, ImageUploader
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.name = 'ゲストユーザー'
+    end
+  end
+
   def liked_by?(article_id)
     likes.where(article_id: article_id).exists?
   end

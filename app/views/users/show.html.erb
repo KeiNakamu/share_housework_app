@@ -6,13 +6,16 @@
 <% end %>
 
 <% if user_signed_in? && @user == current_user %>
-  <%= link_to "プロフィール編集", edit_user_path(current_user) %><br>
+  <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
   <%= link_to "フォロー", followings_user_path(@user) %><br>
   <%= link_to "フォロワー", followers_user_path(@user) %><br>
   <%= link_to "お気に入り", favorites_path %>
 <% end %>
 
 <h3>ユーザー名: <%= @user.name %></h3>
+<% if user_signed_in? && @user == current_user %>
+  <h3>メールアドレス: <%= @user.email %></h3>
+<% end %>
 <% if @user.image? %>
   <%= image_tag @user.image.url, size: '200x200' %>
 <% else %>

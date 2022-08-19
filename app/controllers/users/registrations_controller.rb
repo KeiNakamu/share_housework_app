@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :ensure_normal_user, only: %i[update destroy]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -15,9 +16,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def update
+    if @user.update(user_params)
+      redirect_to root_path, notice: "ユーザーの内容を更新しました"
+    else
+      flash.now[:danger] = "ユーザーを更新できませんでした"
+      render :edit
+    end
+  end
 
   # PUT /resource
   # def update
@@ -29,6 +35,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def ensure_normal_user
+    if resource.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
+    end
+  end
+
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
@@ -37,6 +49,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+  private
+def user_params
+  params.require(:user).permit(:name, :email, :profile, :image, :image_cache)
+end
 
   # protected
 
