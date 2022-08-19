@@ -16,9 +16,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def update
+    if @user.update(user_params)
+      redirect_to root_path, notice: "ユーザーの内容を更新しました"
+    else
+      flash.now[:danger] = "ユーザーを更新できませんでした"
+      render :edit
+    end
+  end
 
   # PUT /resource
   # def update
@@ -44,6 +49,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+  private
+def user_params
+  params.require(:user).permit(:name, :email, :profile, :image, :image_cache)
+end
 
   # protected
 

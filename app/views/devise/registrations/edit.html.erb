@@ -10,10 +10,16 @@
 
   <div class="field">
     <%= f.label :プロフィール画像 %>
-    <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+    <%= image_tag(@user.image.url) if @user.image && @user.image.url %><br>
     <%= f.file_field :image, class: 'form-control' %>
     <%= f.hidden_field :image_cache %>
   </div>
+
+  <div class="field">
+    <%= f.label :profile %>
+    <%= f.text_area :profile %>
+  </div>
+
 
   <div class="field">
     <%= f.label :email %><br />
