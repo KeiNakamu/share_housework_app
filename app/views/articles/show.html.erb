@@ -7,6 +7,12 @@
   <%= image_tag @article.image.url %>
 </p>
 <p>
+  <strong>Category:</strong>
+  <% @article.categories.each do |category| %>
+    <%= category.name %>
+  <% end %>
+</p>
+<p>
   <strong>Status:</strong>
   <%= @article.status %>
 </p>
