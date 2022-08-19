@@ -5,10 +5,9 @@ class ArticlesController < ApplicationController
 
   def index
     @article_search = Article.ransack(params[:q])
+    # @article_search = Article.ransack(params[:q]) if params[:q][:title_cont].blank?
     @articles = @article_search.result
-
-    @category_search = Category.ransack(params[:p], search_key: :p)
-    @categorys = @category_search.result
+    @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])) if params[:q].present? && params[:q][:category_ids].present?
   end
 
   def show
