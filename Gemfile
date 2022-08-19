@@ -39,3 +39,5 @@ gem 'letter_opener_web'
 gem 'devise-i18n'
 gem "cocoon"
 gem 'ransack'
+gem 'rails_admin', '~> 3.0'
+gem 'cancancan'
