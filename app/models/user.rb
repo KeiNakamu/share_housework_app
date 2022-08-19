@@ -19,6 +19,15 @@ class User < ApplicationRecord
     end
   end
 
+  def self.admin_guest
+    find_or_create_by!(email: 'admin_guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.name = '管理者ゲストユーザー'
+      user.admin = true
+    end
+  end
+
   def liked_by?(article_id)
     likes.where(article_id: article_id).exists?
   end
