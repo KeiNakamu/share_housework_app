@@ -17,10 +17,11 @@
   <h3>メールアドレス: <%= @user.email %></h3>
 <% end %>
 <% if @user.image? %>
-  <%= image_tag @user.image.url, size: '200x200' %>
+  <%= image_tag @user.image.url, class: 'profile_image' %>
 <% else %>
-  <%= image_tag 'icon.jpeg', size: '200x200' %>
+  <%= image_tag 'icon.jpeg', class: 'profile_image' %>
 <% end %>
+<h3>プロフィール</h3>
 <%= @user.profile %>
 
 <h4><%= @user.name %>さんの投稿</h4>
@@ -40,9 +41,8 @@
       <tbody>
         <% @user.articles.each do |article| %>
           <tr class = "task_row">
-            <td><%= link_to article.title, article %></td>
-            <td><%= link_to (image_tag article.image.url if article.image.present?), article %></td>
-            <td><%= article.status %></td>
+            <td class = "article_image"><%= link_to (image_tag article.image.url if article.image.present?), article %></td>
+            <td><%= article.title %></td>
             <td><%= article.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
         <% end %>
