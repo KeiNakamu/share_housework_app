@@ -15,6 +15,9 @@ class ArticlesController < ApplicationController
     @comments = @article.comments
     @comment = @article.comments.build
     @favorite = current_user.favorites.find_by(article_id: @article.id) if  user_signed_in?
+    if @article.status_private? && @article.user != current_user
+      redirect_to articles_path, notice: 'このページにはアクセスできません'
+    end
   end
 
   def new

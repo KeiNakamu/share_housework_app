@@ -33,8 +33,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status %>
+      <%= form.select :status, Article.statuses.map { |k, v| [t("article.status.#{k}"), k] }, selected: @article.status %>
   </div>
 
   <div class="field">
