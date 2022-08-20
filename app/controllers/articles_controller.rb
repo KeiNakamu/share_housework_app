@@ -1,11 +1,9 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ new edit update destroy ]
-  # before_action :set_q, only: [:index, :search]
 
   def index
     @article_search = Article.ransack(params[:q])
-    # @article_search = Article.ransack(params[:q]) if params[:q][:title_cont].blank?
     @articles = @article_search.result
     @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])) if params[:q].present? && params[:q][:category_ids].present?
   end
@@ -27,7 +25,6 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    # @procedure = Procedure.find(params[:id])
   end
 
   def create
@@ -52,16 +49,7 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: "Article was successfully destroyed."
   end
 
-  # def search
-  #   @results = @q.result
-  # end
-
   private
-
-  # def set_q
-  #   @q = Article.ransack(params[:q])
-  #   @p = Category.ransack(params[:p])
-  # end
 
   def set_article
     @article = Article.find(params[:id])
