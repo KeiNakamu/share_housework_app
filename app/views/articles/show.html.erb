@@ -42,7 +42,7 @@
 
 <% if user_signed_in? %>
   <div id = "favorite_<%= @article.id %>">
-    <%= render 'favorites/form', article: @article.id %>
+    <%= render partial: 'favorites/favorite', locals: { article: @article } %>
   </div>
 
   <div id = "like_<%= @article.id %>">
