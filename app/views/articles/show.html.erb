@@ -62,4 +62,7 @@
 
 <%= render partial: 'comments/form', locals: { comment: @comment, article: @article } %>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<% if user_signed_in? && @article.user == current_user %>
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
