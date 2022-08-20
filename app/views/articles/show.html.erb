@@ -41,15 +41,17 @@
 </p>
 
 <% if user_signed_in? %>
-  <%= render 'favorites/form', article: @article.id %>
+  <div id = "favorite_<%= @article.id %>">
+    <%= render partial: 'favorites/favorite', locals: { article: @article } %>
+  </div>
 
-<div id = "like_<%= @article.id %>">
-  <%= render partial: "likes/like", locals: { article: @article } %>
-</div>
+  <div id = "like_<%= @article.id %>">
+    <%= render partial: "likes/like", locals: { article: @article } %>
+  </div>
 
-<%= link_to @article.user.name, user_path(@article.user) %>
+  <%= link_to @article.user.name, user_path(@article.user) %>
 
-<%= render 'users/follow_form', user: @article.user %>
+  <%= render 'users/follow_form', user: @article.user %>
 <% end %>
 
 <p>コメント一覧</p>
