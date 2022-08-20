@@ -6,3 +6,7 @@ ja:
           attributes:
             user:
               required: "ユーザーは必須です"
+  article:
+    status:
+      private: '下書き'
+      public: '公開中'
