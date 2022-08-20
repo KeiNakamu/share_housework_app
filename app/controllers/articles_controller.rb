@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[ new edit update destroy ]
 
   def index
-    @article_search = Article.ransack(params[:q])
+    @articles = Article.where(status: :public)
+    @article_search = @articles.ransack(params[:q])
     @articles = @article_search.result
     @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])) if params[:q].present? && params[:q][:category_ids].present?
   end
