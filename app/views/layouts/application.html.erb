@@ -17,7 +17,7 @@
       <% end %>
       <%= link_to "マイページ", user_path(current_user.id) %>
       <%= link_to 'ユーザー一覧', users_path  %>
-      <%= link_to "新規投稿", new_article_path %>
+      <%= link_to "投稿する", new_article_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>

@@ -21,7 +21,7 @@
   <tbody>
     <% @articles.each do |article| %>
       <tr>
-        <td class="image">
+        <td class="thumbnail_image" >
           <%= link_to (image_tag article.image.url if article.image.present?), article %>
         </td>
         <td><%= article.title %></td>

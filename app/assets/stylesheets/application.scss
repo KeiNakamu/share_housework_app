@@ -17,24 +17,27 @@
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 
 field img {
-  width: 15%;
-  height: 15%;
-  text-align: center;
+  // width: 45%;
+  // height: 30%;
+  // text-align: center;
 }
 
 img {
-  width: 15%;
-  height: 15%;
-  text-align: center;
+  width: 20%;
+  height: 20%;
+  // text-align: center;
 }
 
 td.image {
-  text-align: center;
+  text-align: right;
+}
+
+.thumbnail_image{
+  text-align: right;
 }
 
 .delete-marker-fix {
   list-style: none;
-  padding-left: 0;
 }
 
 .link-to{
