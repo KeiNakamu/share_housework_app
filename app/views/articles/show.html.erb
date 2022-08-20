@@ -4,7 +4,7 @@
 </p>
 <p>
   <strong>Image:</strong>
-  <%= image_tag @article.image.url %>
+  <%= image_tag @article.image.url, class: "article_image" %>
 </p>
 <p>
   <strong>Category:</strong>
@@ -22,7 +22,7 @@
   <h4>手順<%= n += 1 %></h4>
   <p>
     <strong>:image</strong>
-    <%= image_tag procedure.image.url %>
+    <%= image_tag procedure.image.url, class: "procedure_image" %>
   </p>
   <p>
     <strong>:content</strong>
