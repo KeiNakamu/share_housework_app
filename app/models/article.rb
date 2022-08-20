@@ -12,5 +12,7 @@ class Article < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   accepts_nested_attributes_for :procedures, allow_destroy: true, reject_if: :all_blank
+
+  enum status: { public: 0, private: 1 }, _prefix: true
   validates_associated :procedures
 end
