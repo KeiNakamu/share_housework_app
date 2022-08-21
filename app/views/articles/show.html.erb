@@ -1,9 +1,11 @@
+<% if @article.status == 'private' %>
+  <h2>この記事は公開していません</h2>
+<% end %>
+
 <p>
-  <strong>Title:</strong>
   <%= @article.title %>
 </p>
 <p>
-  <strong>Image:</strong>
   <% if @article.image? %>
     <%= image_tag @article.image.url, class: "article_image" %>
   <% else %>
@@ -11,21 +13,17 @@
   <% end %>
 </p>
 <p>
-  <strong>Category:</strong>
+  <strong>カテゴリ:</strong>
   <% @article.categories.each do |category| %>
     <%= category.name %>
   <% end %>
 </p>
-<p>
-  <strong>Status:</strong>
-  <%= @article.status %>
-</p>
 
-<% n = 0 %>
-<% @procedures.each do |procedure|%>
-  <h4>手順<%= n += 1 %></h4>
+<h3>手順</h3>
+<%# n = 0 %>
+<% @procedures.each.with_index(1) do |procedure, index|%>
+  <h4><%= '手順'"#{index}" %></h4>
   <p>
-    <strong>:image</strong>
     <% if procedure.image? %>
       <%= image_tag procedure.image.url, class: "procedure_image" %>
     <% else %>
@@ -33,20 +31,21 @@
     <% end %>
   </p>
   <p>
-    <strong>:content</strong>
     <%= procedure.content %>
   </p>
 <% end %>
 
+<% if @article.status == 'private' %>
 <p>
-  <strong>:date</strong>
+  <strong>作業日</strong>
   <%= @article.date.strftime("%Y/%m/%d") %>
 </p>
 
 <p>
-  <strong>:deadline</strong>
+  <strong>期限</strong>
   <%= @article.deadline.strftime("%Y/%m/%d") %>
 </p>
+<% end %>
 
 <% if user_signed_in? %>
   <div id = "favorite_<%= @article.id %>">
@@ -71,6 +70,6 @@
 <%= render partial: 'comments/form', locals: { comment: @comment, article: @article } %>
 
 <% if user_signed_in? && @article.user == current_user %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
-  <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to '編集', edit_article_path(@article) %> |
+  <%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
