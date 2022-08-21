@@ -19,7 +19,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def update
     if @user.update(user_params)
-      redirect_to root_path, notice: "ユーザーの内容を更新しました"
+      redirect_to user_path(@user), notice: "ユーザーの内容を更新しました"
     else
       flash.now[:danger] = "ユーザーを更新できませんでした"
       render :edit
