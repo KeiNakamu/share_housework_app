@@ -1,9 +1,7 @@
 <p>
-  <strong>Title:</strong>
   <%= @article.title %>
 </p>
 <p>
-  <strong>Image:</strong>
   <% if @article.image? %>
     <%= image_tag @article.image.url, class: "article_image" %>
   <% else %>
@@ -11,21 +9,20 @@
   <% end %>
 </p>
 <p>
-  <strong>Category:</strong>
+  <strong>カテゴリ:</strong>
   <% @article.categories.each do |category| %>
     <%= category.name %>
   <% end %>
 </p>
 <p>
-  <strong>Status:</strong>
   <%= @article.status %>
 </p>
 
+<h3>手順</h3>
 <% n = 0 %>
 <% @procedures.each do |procedure|%>
   <h4>手順<%= n += 1 %></h4>
   <p>
-    <strong>:image</strong>
     <% if procedure.image? %>
       <%= image_tag procedure.image.url, class: "procedure_image" %>
     <% else %>
@@ -33,18 +30,17 @@
     <% end %>
   </p>
   <p>
-    <strong>:content</strong>
     <%= procedure.content %>
   </p>
 <% end %>
 
 <p>
-  <strong>:date</strong>
+  <strong>作業日</strong>
   <%= @article.date.strftime("%Y/%m/%d") %>
 </p>
 
 <p>
-  <strong>:deadline</strong>
+  <strong>期限</strong>
   <%= @article.deadline.strftime("%Y/%m/%d") %>
 </p>
 

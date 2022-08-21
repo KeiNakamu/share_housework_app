@@ -1,0 +1,6 @@
+ja:
+  articles:
+    show:
+      status:
+        private: '下書き'
+        public: '公開中'
