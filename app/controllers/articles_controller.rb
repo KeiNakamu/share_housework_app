@@ -50,6 +50,10 @@ class ArticlesController < ApplicationController
     redirect_to articles_url, notice: "Article was successfully destroyed."
   end
 
+  def confirm
+    @article = Article.new(article_params)
+  end
+
   private
 
   def set_article
