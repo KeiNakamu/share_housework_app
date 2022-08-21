@@ -4,7 +4,11 @@
 </p>
 <p>
   <strong>Image:</strong>
-  <%= image_tag @article.image.url, class: "article_image" %>
+  <% if @article.image? %>
+    <%= image_tag @article.image.url, class: "article_image" %>
+  <% else %>
+    <%= image_tag 'no_image.png' %>
+  <% end %>
 </p>
 <p>
   <strong>Category:</strong>
@@ -22,7 +26,11 @@
   <h4>手順<%= n += 1 %></h4>
   <p>
     <strong>:image</strong>
-    <%= image_tag procedure.image.url, class: "procedure_image" %>
+    <% if procedure.image? %>
+      <%= image_tag procedure.image.url, class: "procedure_image" %>
+    <% else %>
+      <%= image_tag 'no_image.png', class: 'profile_image' %>
+    <% end %>
   </p>
   <p>
     <strong>:content</strong>

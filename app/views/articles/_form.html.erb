@@ -48,12 +48,10 @@
 
   <%= form.hidden_field :user_id, :value => current_user.id%>
 
-  <h3>Procedure</h3>
-
-  <div id="detail-association-insertion-point"></div>
+  <h3>手順</h3>
 
   <div class="add-botton-box">
-    <%= link_to_add_association "追加ボタン", form, :procedures,
+    <%= link_to_add_association "手順を追加", form, :procedures,
     class: 'add_fields',
     id: 'add-btn',
     data: {
@@ -62,6 +60,8 @@
       }
     %>
   </div>
+
+  <div id="detail-association-insertion-point"></div>
 
   <div class="actions">
     <%= form.submit %>

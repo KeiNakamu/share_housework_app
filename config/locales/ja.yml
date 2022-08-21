@@ -1,4 +1,8 @@
 ja:
+  article:
+    status:
+      private: '下書き'
+      public: '公開中'
   activerecord:
     errors:
       messages:
