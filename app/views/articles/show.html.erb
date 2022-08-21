@@ -20,9 +20,9 @@
 </p>
 
 <h3>手順</h3>
-<% n = 0 %>
-<% @procedures.each do |procedure|%>
-  <h4>手順<%= n += 1 %></h4>
+<%# n = 0 %>
+<% @procedures.each.with_index(1) do |procedure, index|%>
+  <h4><%= '手順'"#{index}" %></h4>
   <p>
     <% if procedure.image? %>
       <%= image_tag procedure.image.url, class: "procedure_image" %>
@@ -70,6 +70,6 @@
 <%= render partial: 'comments/form', locals: { comment: @comment, article: @article } %>
 
 <% if user_signed_in? && @article.user == current_user %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
-  <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to '編集', edit_article_path(@article) %> |
+  <%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
