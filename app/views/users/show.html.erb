@@ -7,8 +7,8 @@
 
 <% if user_signed_in? && @user == current_user %>
   <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
-  <%= link_to "フォロー", followings_user_path(@user) %><%= @user.following.count %><br>
-  <%= link_to "フォロワー", followers_user_path(@user) %><%= @user.followers.count %><br>
+  <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
+  <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
   <%= link_to "お気に入り", favorites_path %>
 <% end %>
 
@@ -39,7 +39,7 @@
           <tr class = "task_row">
             <td class = "article_image"><%= link_to (image_tag article.image.url if article.image.present?), article %></td>
             <td><%= article.title %></td>
-            <td><%= article.created_at.strftime("%Y/%m/%d") %></td>
+            <td>投稿日:<%= article.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
         <% end %>
       </tbody>
