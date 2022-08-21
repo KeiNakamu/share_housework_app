@@ -32,12 +32,12 @@
 
 <p>
   <strong>:date</strong>
-  <%= @article.date.strftime("%Y年%m月%d日") %>
+  <%= @article.date.strftime("%Y/%m/%d") %>
 </p>
 
 <p>
   <strong>:deadline</strong>
-  <%= @article.deadline.strftime("%Y年%m月%d日") %>
+  <%= @article.deadline.strftime("%Y/%m/%d") %>
 </p>
 
 <% if user_signed_in? %>
