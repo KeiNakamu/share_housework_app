@@ -209,7 +209,3 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  article:
-    status:
-      private: '下書き'
-      public: '公開中'
