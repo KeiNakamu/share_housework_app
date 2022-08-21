@@ -41,3 +41,4 @@ gem "cocoon"
 gem 'ransack'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
+gem 'rails-i18n'
