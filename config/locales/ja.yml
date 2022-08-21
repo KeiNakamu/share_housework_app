@@ -3,6 +3,11 @@ ja:
     status:
       private: '下書き'
       public: '公開中'
+  enums:
+    article:
+      status:
+        private: '下書き'
+        public: '公開中'
   activerecord:
     errors:
       messages:

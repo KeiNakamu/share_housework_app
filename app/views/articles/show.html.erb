@@ -1,3 +1,7 @@
+<% if @article.status == 'private' %>
+  <h2>この記事は公開していません</h2>
+<% end %>
+
 <p>
   <%= @article.title %>
 </p>
@@ -13,9 +17,6 @@
   <% @article.categories.each do |category| %>
     <%= category.name %>
   <% end %>
-</p>
-<p>
-  <%= @article.status %>
 </p>
 
 <h3>手順</h3>
@@ -34,6 +35,7 @@
   </p>
 <% end %>
 
+<% if @article.status == 'private' %>
 <p>
   <strong>作業日</strong>
   <%= @article.date.strftime("%Y/%m/%d") %>
@@ -43,6 +45,7 @@
   <strong>期限</strong>
   <%= @article.deadline.strftime("%Y/%m/%d") %>
 </p>
+<% end %>
 
 <% if user_signed_in? %>
   <div id = "favorite_<%= @article.id %>">
