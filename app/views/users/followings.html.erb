@@ -1,8 +1,8 @@
-views/users/followings.html.erb
 <p>フォロー一覧</p>
-  <p><%= @user.following.count %>フォロー</p><br>
-  <% @users.each do |user| %>
+<%= link_to "フォロワー", followers_user_path(@user) %>
+<p><%= @user.following.count %>フォロー</p><br>
+<% @users.each do |user| %>
   <%= link_to user.name, user, class: "link-to" %>
-  <%= render 'follow_form', user: user %>
+<%= render 'follow_form', user: user %>
 <% end %>
 <br>
