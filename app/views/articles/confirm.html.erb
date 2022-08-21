@@ -1,0 +1,31 @@
+<h3>以下の内容で、投稿する</h3>
+
+<%= form_with(model: @article, local: true) do |form| %>
+  <%= form.hidden_field :title %>
+  <%= form.hidden_field :image %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.hidden_field :category %>
+  <%= form.hidden_field :status %>
+  <%= form.hidden_field :date %>
+  <%= form.hidden_field :deadline %>
+
+  <%= @article.title %>
+  <%= image_tag(@article.image.url) if @article.image && @article.image.url %>
+  <% @article.categories.each do |category| %>
+    <%= category.name %>
+  <% end %>
+  <% @procedures.each.with_index(1) do |procedure, index|%>
+    <h4><%= '手順'"#{index}" %></h4>
+    <% if procedure.image? %>
+      <%= image_tag procedure.image.url, class: "procedure_image" %>
+    <% else %>
+      <%= image_tag 'no_image.png', class: 'profile_image' %>
+    <% end %>
+  <%= procedure.content %>
+  <% end %>
+
+  <%= @article.date.strftime("%Y/%m/%d") %>
+  <%= @article.deadline.strftime("%Y/%m/%d") %>
+  <p>本文:<%= @article.content %></p>
+  <%= form.submit  "登録する" %>
+<% end %>
