@@ -17,7 +17,7 @@ class Article < ApplicationRecord
   validates_associated :procedures
 
   ransacker :likes_count do
-    query = '(SELECT COUNT(likes.item_id) FROM likes where likes.article_id = articles.id GROUP BY likes.article_id)'
+    query = '(SELECT COUNT(likes.article_id) FROM likes where likes.article_id = articles.id GROUP BY likes.article_id)'
     Arel.sql(query)
   end
 end

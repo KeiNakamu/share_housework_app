@@ -3,10 +3,19 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[ new edit update destroy ]
 
   def index
-    @articles = Article.where(status: :public).page(params[:page]).per(5)
-    @article_search = @articles.ransack(params[:q])
-    @articles = @article_search.result.order(created_at: "DESC").page(params[:page]).per(5)
-    @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])).page(params[:page]).per(5) if params[:q].present? && params[:q][:category_ids].present?
+    if params[:q].present?
+      @articles = Article.where(status: :public).page(params[:page]).per(10)
+      @article_search = @articles.ransack(params[:q])
+      @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(10)
+      @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])).page(params[:page]).per(10) if params[:q][:category_ids].present?
+    else
+      params[:q] = { sorts: 'updated_at DESC' }
+      @articles = Article.where(status: :public).page(params[:page]).per(10)
+      @article_search = @articles.ransack(params[:q])
+      @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(10)
+      @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])).page(params[:page]).per(10) if params[:q].present? && params[:q][:category_ids].present?
+    end
+    @count = @articles.total_count
   end
 
   def show
