@@ -15,4 +15,9 @@ class Article < ApplicationRecord
 
   enum status: { public: 0, private: 1 }, _prefix: true
   validates_associated :procedures
+
+  ransacker :likes_count do
+    query = '(SELECT COUNT(likes.article_id) FROM likes where likes.article_id = articles.id GROUP BY likes.article_id)'
+    Arel.sql(query)
+  end
 end

@@ -9,17 +9,22 @@
     <% end %>
     <br>
 <% end %>
+
+<%= search_form_for @article_search  do |f| %>
+<%= f.select( :sorts, { '並び替え': '並び替え', '古い順': 'updated_at asc', '新しい順': 'updated_at desc', 'いいね!の多い順': 'likes_count desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} ) %>
+<% end %>
 <br><hr>
-<div class='p-top'>
 <table>
   <thead>
+  <% if @article_search.present? %>
+      <p>表示件数は：<%= @count %>件です</p>
+  <% end %>
   </thead>
 
   <tbody>
     <% @articles.each do |article| %>
       <tr>
         <td class="image">
-          <%#= link_to (image_tag article.image.url if article.image.present?), article %>
             <% if article.image? %>
               <%= link_to (image_tag article.image.url), article ,class: "confirm_article_image" %>
             <% else %>
@@ -33,6 +38,7 @@
           <% end %>
         </td>
         <td><%= link_to article.user.name, user_path(article.user), class: "link-to" %></td>
+        <td><%= article.updated_at.strftime("%Y/%m/%d") %></td>
         <td>
           <i class="fa fa-heart unlike-btn"></i>
           <%= article.liked_users.count %>
