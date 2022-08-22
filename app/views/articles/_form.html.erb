@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, placeholder: 'タイトルを入力'%>
   </div>
 
   <div class="field">
@@ -26,9 +26,8 @@
   <div class="field">
     <%= form.label :category %>
     <br>
-    <% Category.all.each do |category| %>
-      <%= form.check_box :category_ids, { multiple: true, checked: category[:checked], disabled: category[:disabled], include_hidden: false }, category[:id] %>
-      <%= form.label :category_ids, category.name, class:"label-bg", value: category[:id]%>
+      <%= form.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text } %>
     <% end %>
   </div>
 
