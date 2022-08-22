@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     resources :comments
     resources :likes, only: [:create, :destroy]
     collection do
-      get 'search'
+      get :search
+      post :confirm
     end
   end
   resources :favorites, only: [:index, :create, :destroy]

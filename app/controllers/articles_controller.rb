@@ -30,16 +30,21 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
-    if @article.save
-      redirect_to article_path(@article), notice: "Article was successfully created."
+    @procedure = @article.procedures.build
+    if params[:back]
+      render :new
     else
-      render :new, status: :unprocessable_entity
+      if @article.save
+        redirect_to article_path(@article), notice: "作成しました"
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
   def update
     if @article.update(article_params)
-      redirect_to article_url(@article), notice: "Article was successfully updated."
+      redirect_to article_url(@article), notice: "投稿した記事を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -47,7 +52,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to articles_url, notice: "Article was successfully destroyed."
+    redirect_to articles_url, notice: "投稿した記事を削除しました"
+  end
+
+  def confirm
+    @article = current_user.articles.build(article_params)
+    @procedure = @article.procedures.build
+    render :new if @article.invalid?
   end
 
   private

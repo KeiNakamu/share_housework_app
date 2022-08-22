@@ -9,7 +9,7 @@
   <% if @article.image? %>
     <%= image_tag @article.image.url, class: "article_image" %>
   <% else %>
-    <%= image_tag 'no_image.png' %>
+    <%= image_tag 'no_image.png', class: "article_image" %>
   <% end %>
 </p>
 <p>
@@ -20,14 +20,13 @@
 </p>
 
 <h3>手順</h3>
-<%# n = 0 %>
 <% @procedures.each.with_index(1) do |procedure, index|%>
   <h4><%= '手順'"#{index}" %></h4>
   <p>
     <% if procedure.image? %>
       <%= image_tag procedure.image.url, class: "procedure_image" %>
     <% else %>
-      <%= image_tag 'no_image.png', class: 'profile_image' %>
+      <%= image_tag 'no_image.png', class: 'procedure_image' %>
     <% end %>
   </p>
   <p>
