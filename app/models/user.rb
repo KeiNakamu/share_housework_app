@@ -33,6 +33,10 @@ class User < ApplicationRecord
     likes.where(article_id: article_id).exists?
   end
 
+  def favorited_by?(article_id)
+    favorites.where(article_id: article_id).exists?
+  end
+
   def follow!(other_user)
     active_relationships.create!(followed_id: other_user.id)
   end

@@ -18,13 +18,13 @@ Rails.application.routes.draw do
   resources :articles do
     resources :procedures
     resources :comments
+    resources :favorites, only: [:index, :create, :destroy]
     resources :likes, only: [:create, :destroy]
     collection do
       get :search
       post :confirm
     end
   end
-  resources :favorites, only: [:index, :create, :destroy]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
