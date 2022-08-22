@@ -9,7 +9,7 @@
   <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
   <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
   <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
-  <%= link_to "お気に入り", favorites_path %>
+  <%= link_to "お気に入り", article_favorites_path(@user) %>
 <% end %>
 
 <h3>ユーザー名: <%= @user.name %></h3>
