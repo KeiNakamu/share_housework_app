@@ -1,4 +1,6 @@
-.paginate {
-  text-align: center;
-  margin:0 auto;
+.p-top {
+  &__paginate {
+    text-align: center;
+    margin:0 auto;
+  }
 }
