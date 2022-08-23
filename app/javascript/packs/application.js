@@ -18,3 +18,5 @@ require("channels")
 
 import '@fortawesome/fontawesome-free/js/all';
 import "cocoon"
+import 'bootstrap';
+import '../stylesheets/application';
