@@ -29,10 +29,19 @@
     <% end %>
     </nav>
 
-    <header>
-    header
-
-    </header>
+    <% if current_page?(root_path) || current_page?(articles_path) %>
+      <header>
+        <div class="jumbotron text-center hero">
+          <div class="container">
+            <h1>あなたのニュースを話し合おう！</h1>
+            <p>何かコメントを書く</p>
+            <% unless user_signed_in? %>
+              <%= link_to "いますぐサインアップする", new_user_registration_path, class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        </div>
+      </header>
+    <% end %>
 
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
@@ -44,5 +53,8 @@
     <%= yield %>
 
     <%= link_to "Back", 'javascript:history.back()' %>
+    <footer class="footer text-center">
+      - footer -
+    </footer>
   </body>
 </html>

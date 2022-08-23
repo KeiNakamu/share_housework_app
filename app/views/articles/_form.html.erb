@@ -48,17 +48,6 @@
   <%= form.hidden_field :user_id, :value => current_user.id%>
 
   <h3>手順</h3>
-  <div class="field">
-    <%= form.label :'画像' %>
-    <%= form.file_field :image %>
-    <%= form.hidden_field :image_cache %>
-  </div>
-
-    <div class="field">
-    <%= form.label :'内容' %>
-    <%= form.text_area :content %>
-  </div>
-
 
   <div class="add-botton-box">
     <%= link_to_add_association "手順を追加", form, :procedures,
