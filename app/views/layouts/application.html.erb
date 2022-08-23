@@ -10,6 +10,8 @@
   </head>
 
   <body>
+  <nav class="navbar sticky-top navbar-light bg-light">
+  <a class="navbar-brand" href="#">ロゴ</a>
     <%= link_to "ホーム", root_path %>
     <% if user_signed_in? %>
       <% if current_user.admin? %>
@@ -25,6 +27,7 @@
       <%= link_to "アカウント登録", new_user_registration_path %>
       <%= link_to "ログイン", new_user_session_path %>
     <% end %>
+    </nav>
 
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>

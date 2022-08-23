@@ -5,11 +5,9 @@
   <%= f.submit '検索' %>
   <br>
   <%= f.collection_check_boxes :categories_id_in, Category.all, :id ,:name %>
-  <%= f.label :categories_id_in, "カテゴリ："%>
   <br>
 <% end %>
 <br><hr>
-<table>
   <thead>
   <% if @article_search.present? %>
       <p>表示件数は：<%= @count %>件です</p>
@@ -17,30 +15,29 @@
   </thead>
 
   <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td class="article_image">
+    <div class="card-deck">
+      <% @articles.each do |article| %>
+      <div class="col-md-3">
+        <div class="card">
+          <div class="article_image">
             <% if article.image? %>
               <%= link_to (image_tag article.image.url), article %>
             <% else %>
               <%= link_to (image_tag 'no_image.png'),article %>
             <% end %>
-        </td>
-        <td><%= article.title %></td>
-        <td>
-          <% article.categories.each do |category| %>
-            <%= category.name %>
-          <% end %>
-        </td>
-        <td><%= link_to article.user.name, user_path(article.user), class: "link-to" %></td>
-        <td><%= article.updated_at.strftime("%Y/%m/%d") %></td>
-        <td>
-          <i class="fa fa-heart unlike-btn"></i>
-          <%= article.liked_users.count %>
-        </td>
-      </tr>
+          </div>
+          <p><%= article.title %></p>
+          <p>
+            <% article.categories.each do |category| %>
+              <%= category.name %>
+            <% end %>
+          </p>
+          <p><%= link_to article.user.name, user_path(article.user), class: "link-to" %></p>
+          <p><%= article.updated_at.strftime("%Y/%m/%d") %></p>
+          <p><i class="fa fa-heart unlike-btn"></i><%= article.liked_users.count %></p>
+      </div>
+    </div>
     <% end %>
   </tbody>
-</table>
   <div class='p-top__paginate'><%= paginate(@articles) %></div>
 </div>
