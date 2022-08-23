@@ -7,13 +7,11 @@ class ArticlesController < ApplicationController
       @articles = Article.where(status: :public).page(params[:page]).per(10)
       @article_search = @articles.ransack(params[:q])
       @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(10)
-      @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])).page(params[:page]).per(10) if params[:q][:category_ids].present?
     else
       params[:q] = { sorts: 'updated_at DESC' }
       @articles = Article.where(status: :public).page(params[:page]).per(10)
       @article_search = @articles.ransack(params[:q])
       @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(10)
-      @articles = @articles.where(article_categories: ArticleCategory.where(category_id: params[:q][:category_ids])).page(params[:page]).per(10) if params[:q].present? && params[:q][:category_ids].present?
     end
     @count = @articles.total_count
   end

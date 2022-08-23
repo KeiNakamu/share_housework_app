@@ -4,11 +4,9 @@
   <%= f.search_field :title_cont, placeholder: 'タイトル検索' %>
   <%= f.submit '検索' %>
   <br>
-    <% Category.all.each do |category| %>
-      <%= f.check_box :category_ids, { multiple: true, checked: category[:checked], disabled: category[:disabled], include_hidden: false }, category[:id] %>
-      <%= f.label :category_ids, category.name, class:"label-bg", value: category[:id]%>
-    <% end %>
-    <br>
+  <%= f.collection_check_boxes :categories_id_in, Category.all, :id ,:name %>
+  <%= f.label :categories_id_in, "カテゴリ："%>
+  <br>
 <% end %>
 <br><hr>
 <table>
