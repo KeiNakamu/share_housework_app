@@ -65,7 +65,9 @@ class ArticlesController < ApplicationController
   def confirm
     @article = current_user.articles.build(article_params)
     @procedure = @article.procedures.build
-    render :new if @article.invalid?
+    if params[:back]
+      render :new if @article.invalid?
+    end
   end
 
   private

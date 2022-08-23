@@ -15,7 +15,7 @@
   <% if @article.image? %>
     <%= image_tag @article.image.url, class: "confirm_article_image" %>
   <% else %>
-    <%= image_tag 'no_image.png', class: "confirm_article_image" %>
+    <%= image_tag 'no_image.png', size: '300x200', class: "confirm_article_image" %>
   <% end %>
 
   <p>選択したカテゴリ</p>
