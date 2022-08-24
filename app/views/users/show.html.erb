@@ -1,17 +1,23 @@
 <div class="container">
-  <% if user_signed_in? && @user == current_user %>
-    <h1>マイページ</h1>
-  <% else %>
-    <h1><%= @user.name %>さんのページ</h1>
-    <%= render 'follow_form', user: @user %>
-  <% end %>
+  <div class="row">
+    <% if user_signed_in? && @user == current_user %>
+      <h1>マイページ</h1>
+    <% else %>
+      <h1><%= @user.name %>さんのページ</h1>
+      <%= render 'follow_form', user: @user %>
+    <% end %>
+  </div>
+</div>
 
-  <% if user_signed_in? && @user == current_user %>
-    <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
-    <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
-    <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
-    <%= link_to "お気に入り", article_favorites_path(@user) %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <% if user_signed_in? && @user == current_user %>
+      <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
+      <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
+      <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
+      <%= link_to "お気に入り", article_favorites_path(@user) %>
+    <% end %>
+  </div>
 </div>
 
 <div class="container">
@@ -22,11 +28,10 @@
       <% else %>
         <%= image_tag 'icon.jpeg', class: 'profile_image' %>
       <% end %>
-      </div>
-      <div class="col-md-6 text-center align-items-center">
-        <h3>ユーザー名: <%= @user.name %></h3>
-        <h3 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h3>
-      </div>
+    </div>
+    <div class="col-md-6 ">
+      <h5>ユーザー名: <%= @user.name %></h5>
+      <h5 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
     </div>
   </div>
 </div>
