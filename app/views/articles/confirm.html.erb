@@ -23,13 +23,20 @@
         <%= b.label { b.check_box + b.text } %>
     <% end %>
 
+  <% n = 0 %>
   <p>入力された内容</p>
-  <% @article.procedures.each.with_index(1) do |procedure, index|%>
-    <h4><%= '手順'"#{index}" %></h4>
-    <% if procedure.image? %>
-      <%= image_tag procedure.image.url, class: "procedure_image" %>
-    <% end %>
-    <%= procedure.content %>
+  <%= form.fields_for :procedures do |procedure| %>
+    <%= procedure.hidden_field :image %>
+    <%= procedure.hidden_field :image_cache %>
+    <%= procedure.hidden_field :content %>
+
+      <h4> 手順<%= n += 1 %> </h4>
+      <% if procedure.object.image? %>
+        <%= image_tag procedure.object.image.url, class: "procedure_image" %>
+      <% else %>
+        <%= image_tag 'no_image.png', size: '300x200', class: "confirm_article_image" %>
+      <% end %>
+      <%= procedure.object.content %>
   <% end %>
 
   <p>作業日:<%= @article.date.strftime("%Y/%m/%d") %></p>

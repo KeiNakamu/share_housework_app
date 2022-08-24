@@ -64,6 +64,7 @@ class ArticlesController < ApplicationController
 
   def confirm
     @article = current_user.articles.build(article_params)
+    # binding.irb
     @procedure = @article.procedures.build
     if params[:back]
       render :new if @article.invalid?
