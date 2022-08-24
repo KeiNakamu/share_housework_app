@@ -4,14 +4,14 @@ class ArticlesController < ApplicationController
 
   def index
     if params[:q].present?
-      @articles = Article.where(status: :public).page(params[:page]).per(10)
+      @articles = Article.where(status: :public).page(params[:page]).per(12)
       @article_search = @articles.ransack(params[:q])
-      @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(10)
+      @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(12)
     else
       params[:q] = { sorts: 'updated_at DESC' }
-      @articles = Article.where(status: :public).page(params[:page]).per(10)
+      @articles = Article.where(status: :public).page(params[:page]).per(12)
       @article_search = @articles.ransack(params[:q])
-      @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(10)
+      @articles = @article_search.result.order(updated_at: "DESC").page(params[:page]).per(12)
     end
     @count = @articles.total_count
   end
@@ -37,7 +37,6 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
-    @procedure = @article.procedures.build
     if params[:back]
       render :new
     else
@@ -64,8 +63,6 @@ class ArticlesController < ApplicationController
 
   def confirm
     @article = current_user.articles.build(article_params)
-    # binding.irb
-    @procedure = @article.procedures.build
     if params[:back]
       render :new if @article.invalid?
     end

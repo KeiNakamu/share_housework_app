@@ -39,6 +39,8 @@
       <% if procedure.object.image? %>
       <h4> 手順<%= n += 1 %> </h4>
         <%= image_tag procedure.object.image.url, class: "procedure_image" %>
+      <% else %>
+        <%= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
       <% end %>
       <h4><%= procedure.object.content %></h4>
   <% end %>
