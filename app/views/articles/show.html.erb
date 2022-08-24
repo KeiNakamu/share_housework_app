@@ -30,7 +30,8 @@
     <% end %>
   </p>
   <p>
-    <%= procedure.content %>
+    <%#= procedure.content %>
+    <%=safe_join(procedure.content.split("\n"),tag(:br))%>
   </p>
 <% end %>
 
@@ -57,7 +58,9 @@
 
   <%= link_to @article.user.name, user_path(@article.user) %>
 
-  <%= render 'users/follow_form', user: @article.user %>
+  <% if current_user == @user %>
+    <%= render 'users/follow_form', user: @article.user %>
+  <% end %>
 <% end %>
 
 <p>コメント一覧</p>
