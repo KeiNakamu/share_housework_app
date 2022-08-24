@@ -35,10 +35,9 @@ https://docs.google.com/spreadsheets/d/170JcNXdfruNEE9Il5shd3DFuxwFIIocOAAmFCZc-
 
 ## ER図
 ---
-https://user-images.githubusercontent.com/104960185/183896058-8e83423b-a5c1-44d4-990c-2ba72a662111.png
+https://user-images.githubusercontent.com/104960185/186406230-eb6aeb62-4ef3-4b4b-b820-d2fa63c4e509.png
 
-![ER図](https://user-images.githubusercontent.com/104960185/183896058-8e83423b-a5c1-44d4-990c-2ba72a662111.png)
-
+![ER図](https://user-images.githubusercontent.com/104960185/186406230-eb6aeb62-4ef3-4b4b-b820-d2fa63c4e509.png)
 
 ## 画面遷移図
 ---
