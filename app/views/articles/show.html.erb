@@ -9,7 +9,7 @@
   <% if @article.image? %>
     <%= image_tag @article.image.url, class: "article_image" %>
   <% else %>
-    <%= image_tag 'no_image.png', class: "article_image" %>
+    <%= image_tag 'no_image.png', size: '300x200', class: "article_image" %>
   <% end %>
 </p>
 <p>
@@ -26,7 +26,7 @@
     <% if procedure.image? %>
       <%= image_tag procedure.image.url, class: "procedure_image" %>
     <% else %>
-      <%= image_tag 'no_image.png', class: 'procedure_image' %>
+      <%= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
     <% end %>
   </p>
   <p>

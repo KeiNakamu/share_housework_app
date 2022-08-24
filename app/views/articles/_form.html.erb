@@ -1,3 +1,5 @@
+<div class="container">
+  <div class="row">
 <%= form_with(model: @article, local: true ,url: choose_new_or_edit ) do |form| %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
@@ -49,6 +51,19 @@
 
   <h3>手順</h3>
 
+  <%= form.fields_for :procedures do |f| %>
+    <div class="field">
+      <%= f.label :'画像' %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+
+      <div class="field">
+      <%= f.label :'内容' %>
+      <%= f.text_area :content %>
+    </div>
+  <% end %>
+
   <div class="add-botton-box">
     <%= link_to_add_association "手順を追加", form, :procedures,
     class: 'add_fields',
@@ -66,3 +81,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+  </div>
+</div>
