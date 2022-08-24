@@ -1,5 +1,5 @@
 <tbody>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-2">
       <h3>検索</h3>
@@ -22,7 +22,7 @@
     <div class="col-10">
       <div class="card-deck">
         <% @articles.each do |article| %>
-          <div class="col-4">
+          <div class="col-3">
             <div class="card">
               <% if article.image? %>
                 <%= link_to (image_tag article.image.url, class: 'mx-auto d-block'), article %>

@@ -59,5 +59,10 @@ img {
 }
 
 .background {
-  background-image: image-url('lets_hold_hands.png');
+  background-color: #945;
+  background-image: image-url('assets/lets_hold_hands.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }

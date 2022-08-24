@@ -33,7 +33,7 @@
       <header>
         <div class="jumbotron text-center hero">
           <div class="container">
-            <h1>あなたのニュースを話し合おう！</h1>
+            <h1>みんなで話し合おう！</h1>
             <p>何かコメントを書く</p>
             <% unless user_signed_in? %>
               <%= link_to "いますぐサインアップする", new_user_registration_path, class: "btn btn-primary" %>
@@ -50,9 +50,11 @@
       <p class="alert alert-error"><%= alert %></p>
     <% end %>
 
+    <div class="background">
     <%= yield %>
 
     <%= link_to "Back", 'javascript:history.back()' %>
+    </div>
     <footer class="footer text-center">
       - footer -
     </footer>

@@ -1,3 +1,4 @@
+<div class="container">
 <% if user_signed_in? && @user == current_user %>
   <h1>マイページ</h1>
 <% else %>
@@ -11,40 +12,41 @@
   <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
   <%= link_to "お気に入り", article_favorites_path(@user) %>
 <% end %>
+</div>
 
-<h3>ユーザー名: <%= @user.name %></h3>
-<% if user_signed_in? && @user == current_user %>
-  <h3>メールアドレス: <%= @user.email %></h3>
-<% end %>
+<div class="container">
+<div class="row">
+<div class="col-md-3">
 <% if @user.image? %>
   <%= image_tag @user.image.url, class: 'profile_image' %>
 <% else %>
   <%= image_tag 'icon.jpeg', class: 'profile_image' %>
 <% end %>
+</div>
+<div class="col-md-6 text-center align-items-center">
+<h3>ユーザー名: <%= @user.name %></h3>
 <h3>プロフィール</h3>
-<%= @user.profile %>
+<h3><%= @user.profile %></h3>
+</div>
+</div>
+</div>
 
-<h4><%= @user.name %>さんの投稿</h4>
-<div class="table-responsive-sm">
-  <div class="m-2 p-5">
-    <table class="table">
-      <thead>
-        <tr>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% @user.articles.each do |article| %>
-          <tr class = "task_row">
-            <td class = "article_image">
-              <%= link_to (image_tag article.image.url if article.image.present?), article %>
-            </td>
-            <td><%= article.title %></td>
-            <td>投稿日:<%= article.created_at.strftime("%Y/%m/%d") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<h4 class="profile text-center"><%= @user.name %>さんの投稿</h4>
+<% @user.articles.each do |article| %>
+<div class="container">
+  <div class="card mb-4 text-center", style="height: 100px" >
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <%= link_to (image_tag article.image.url if article.image.present?), article, size: '50x50' %>
+      </div>
+      <div class="col-md-4">
+        <div class="card-body">
+          <h3><%= article.title %></h3>
+          <p>更新日:<%= article.updated_at.strftime("%Y/%m/%d") %></p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<% end %>
