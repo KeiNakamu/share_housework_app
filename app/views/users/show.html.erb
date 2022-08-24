@@ -25,7 +25,7 @@
       </div>
       <div class="col-md-6 text-center align-items-center">
         <h3>ユーザー名: <%= @user.name %></h3>
-        <h3 class="w-break"><%= @user.profile %></h3>
+        <h3 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h3>
       </div>
     </div>
   </div>

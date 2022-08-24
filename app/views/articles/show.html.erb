@@ -25,8 +25,8 @@
   <p>
     <% if procedure.image? %>
       <%= image_tag procedure.image.url, class: "procedure_image" %>
-    <%# else %>
-      <%#= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
+    <% else %>
+      <%= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
     <% end %>
   </p>
   <p>
