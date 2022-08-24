@@ -1,5 +1,11 @@
-<h3>以下の内容で、投稿する</h3>
+<div class="container">
+  <div class="row">
+<h3>以下の内容で、投稿します</h3>
+  </div>
+</div>
 
+<div class="container">
+  <div class="row">
 <%= form_with(model: @article, url: articles_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :image %>
@@ -37,9 +43,15 @@
       <h4><%= procedure.object.content %></h4>
   <% end %>
 
+  <% if @article.date? %>
   <p>作業日:<%= @article.date.strftime("%Y/%m/%d") %></p>
+  <% end %>
+  <% if @article.deadline? %>
   <p>期限:<%= @article.deadline.strftime("%Y/%m/%d") %></p>
+  <% end %>
   <%= form.submit  "登録する" %>
 
   <%= form.submit "戻る", name: 'back' %>
 <% end %>
+  </div>
+</div>
