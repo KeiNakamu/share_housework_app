@@ -30,13 +30,11 @@
     <%= procedure.hidden_field :image_cache %>
     <%= procedure.hidden_field :content %>
 
-      <h4> 手順<%= n += 1 %> </h4>
       <% if procedure.object.image? %>
+      <h4> 手順<%= n += 1 %> </h4>
         <%= image_tag procedure.object.image.url, class: "procedure_image" %>
-      <% else %>
-        <%= image_tag 'no_image.png', size: '300x200', class: "confirm_article_image" %>
       <% end %>
-      <%= procedure.object.content %>
+      <h4><%= procedure.object.content %></h4>
   <% end %>
 
   <p>作業日:<%= @article.date.strftime("%Y/%m/%d") %></p>

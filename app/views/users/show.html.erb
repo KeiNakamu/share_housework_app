@@ -1,34 +1,34 @@
 <div class="container">
-<% if user_signed_in? && @user == current_user %>
-  <h1>マイページ</h1>
-<% else %>
-  <h1><%= @user.name %>さんのページ</h1>
-  <%= render 'follow_form', user: @user %>
-<% end %>
+  <% if user_signed_in? && @user == current_user %>
+    <h1>マイページ</h1>
+  <% else %>
+    <h1><%= @user.name %>さんのページ</h1>
+    <%= render 'follow_form', user: @user %>
+  <% end %>
 
-<% if user_signed_in? && @user == current_user %>
-  <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
-  <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
-  <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
-  <%= link_to "お気に入り", article_favorites_path(@user) %>
-<% end %>
+  <% if user_signed_in? && @user == current_user %>
+    <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
+    <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
+    <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
+    <%= link_to "お気に入り", article_favorites_path(@user) %>
+  <% end %>
 </div>
 
 <div class="container">
-<div class="row">
-<div class="col-md-3">
-<% if @user.image? %>
-  <%= image_tag @user.image.url, class: 'profile_image' %>
-<% else %>
-  <%= image_tag 'icon.jpeg', class: 'profile_image' %>
-<% end %>
-</div>
-<div class="col-md-6 text-center align-items-center">
-<h3>ユーザー名: <%= @user.name %></h3>
-<h3>プロフィール</h3>
-<h3><%= @user.profile %></h3>
-</div>
-</div>
+  <div class="row">
+    <div class="col-md-3">
+      <% if @user.image? %>
+        <%= image_tag @user.image.url, class: 'profile_image' %>
+      <% else %>
+        <%= image_tag 'icon.jpeg', class: 'profile_image' %>
+      <% end %>
+      </div>
+      <div class="col-md-6 text-center align-items-center">
+        <h3>ユーザー名: <%= @user.name %></h3>
+        <h3 class="w-break"><%= @user.profile %></h3>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -38,7 +38,11 @@
   <div class="card mb-4 text-center", style="height: 100px" >
     <div class="row no-gutters">
       <div class="col-md-4">
-        <%= link_to (image_tag article.image.url if article.image.present?), article, size: '50x50' %>
+        <% if article.image? %>
+          <%= link_to (image_tag article.image.url, class: 'mx-auto d-block'), article %>
+        <% else %>
+          <%= link_to (image_tag 'no_image.png', size: '300x200', class: 'mx-auto d-block'), article %>
+        <% end %>
       </div>
       <div class="col-md-4">
         <div class="card-body">
