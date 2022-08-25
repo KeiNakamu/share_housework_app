@@ -37,6 +37,7 @@
       <%= form.select :status, Article.statuses.map { |k, v| [t("article.status.#{k}"), k] }, selected: @article.status %>
   </div>
 
+  <p>非公開を選択時のみ作業日と期限を選択してください</p>
   <div class="field">
     <%= form.label :date %>
     <%= form.date_field :date %>

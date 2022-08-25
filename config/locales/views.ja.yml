@@ -2,5 +2,5 @@ ja:
   articles:
     show:
       status:
-        private: '下書き'
-        public: '公開中'
+        private: '非公開'
+        public: '公開'
