@@ -1,77 +1,86 @@
-<% if @article.status == 'private' %>
-  <h2>この記事は公開していません</h2>
-<% end %>
-
-<p>
-  <%= @article.title %>
-</p>
-<p>
-  <% if @article.image? %>
-    <%= image_tag @article.image.url, class: "article_image" %>
-  <% else %>
-    <%= image_tag 'no_image.png', size: '300x200', class: "article_image" %>
-  <% end %>
-</p>
-<p>
-  <strong>カテゴリ:</strong>
-  <% @article.categories.each do |category| %>
-    <%= category.name %>
-  <% end %>
-</p>
-
-<h3>手順</h3>
-<% @procedures.each.with_index(1) do |procedure, index|%>
-  <h4><%= '手順'"#{index}" %></h4>
-  <p>
-    <% if procedure.image? %>
-      <%= image_tag procedure.image.url, class: "procedure_image" %>
-    <% else %>
-      <%= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
+<div class="container mb-5">
+  <div class="row">
+    <% if @article.status == 'private' %>
+      <h3>この記事は公開していません</h3>
     <% end %>
-  </p>
-  <p>
-    <%#= procedure.content %>
-    <%=safe_join(procedure.content.split("\n"),tag(:br))%>
-  </p>
-<% end %>
-
-<% if @article.status == 'private' %>
-<p>
-  <strong>作業日</strong>
-  <%= @article.date.strftime("%Y/%m/%d") %>
-</p>
-
-<p>
-  <strong>期限</strong>
-  <%= @article.deadline.strftime("%Y/%m/%d") %>
-</p>
-<% end %>
-
-<% if user_signed_in? %>
-  <div id = "favorite_<%= @article.id %>">
-    <%= render partial: 'favorites/favorite', locals: { article: @article } %>
   </div>
-
-  <div id = "like_<%= @article.id %>">
-    <%= render partial: "likes/like", locals: { article: @article } %>
-  </div>
-
-  <%= link_to @article.user.name, user_path(@article.user) %>
-
-  <% if current_user == @user %>
-    <%= render 'users/follow_form', user: @article.user %>
-  <% end %>
-<% end %>
-
-<p>コメント一覧</p>
-
-<div id="comments_area">
-  <%= render partial: 'comments/index', locals: { comments: @comments, article: @article } %>
 </div>
 
-<%= render partial: 'comments/form', locals: { comment: @comment, article: @article } %>
+<div class="container">
+  <div class="row">
+      <p>タイトル</p><h3><%= @article.title %></h3>
+      <% if @article.image? %>
+        <%= image_tag @article.image.url, class: "article_image" %>
+      <% else %>
+        <%= image_tag 'no_image.png', size: '300x200', class: "article_image" %>
+      <% end %>
+    <p>
+      <strong>カテゴリ:</strong>
+      <% @article.categories.each do |category| %>
+        <%= category.name %>
+      <% end %>
+    </p>
+  </div>
+</div>
 
-<% if user_signed_in? && @article.user == current_user %>
-  <%= link_to '編集', edit_article_path(@article) %> |
-  <%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<div class="container mb-5">
+  
+    <h3>手順</h3>
+    <div class="row">
+    <% @procedures.each.with_index(1) do |procedure, index|%>
+      <h4><%= '手順'"#{index}" %></h4>
+      <p>
+        <% if procedure.image? %>
+          <%= image_tag procedure.image.url, class: "procedure_image" %>
+        <% else %>
+          <%= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
+        <% end %>
+      </p>
+      <p>
+        <%#= procedure.content %>
+        <h5><%=safe_join(procedure.content.split("\n"),tag(:br))%></h5>
+      </p>
+    <% end %>
+
+    <% if @article.status == 'private' %>
+    <p>
+      <strong>作業日</strong>
+      <%= @article.date.strftime("%Y/%m/%d") %>
+    </p>
+
+    <p>
+      <strong>期限</strong>
+      <%= @article.deadline.strftime("%Y/%m/%d") %>
+    </p>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <div id = "favorite_<%= @article.id %>">
+        <%= render partial: 'favorites/favorite', locals: { article: @article } %>
+      </div>
+
+      <div id = "like_<%= @article.id %>">
+        <%= render partial: "likes/like", locals: { article: @article } %>
+      </div>
+
+      <%= link_to @article.user.name, user_path(@article.user) %>
+
+      <% if current_user == @user %>
+        <%= render 'users/follow_form', user: @article.user %>
+      <% end %>
+    <% end %>
+
+    <p>コメント一覧</p>
+
+    <div id="comments_area">
+      <%= render partial: 'comments/index', locals: { comments: @comments, article: @article } %>
+    </div>
+
+    <%= render partial: 'comments/form', locals: { comment: @comment, article: @article } %>
+
+    <% if user_signed_in? && @comment.user == current_user %>
+      <%= link_to '編集', edit_article_path(@article) %> |
+      <%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+</div>
