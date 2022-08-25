@@ -13,8 +13,8 @@
   <div class="row">
     <% if user_signed_in? && @user == current_user %>
       <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
-      <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
-      <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
+      <%= link_to "フォロー", followings_user_path(@user) %><br>
+      <%= link_to "フォロワー", followers_user_path(@user) %><br>
       <%= link_to "お気に入り", article_favorites_path(@user) %>
     <% end %>
   </div>
@@ -33,7 +33,7 @@
     <div class="col-md-6 m-auto">
       <h5>ユーザー名: <%= @user.name %></h5><br>
       <h5>プロフィール</h5>
-      <h5 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
+      <h5 class="w-break"><%#=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
     </div>
   </div>
 </div>
