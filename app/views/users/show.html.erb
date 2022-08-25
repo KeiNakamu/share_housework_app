@@ -33,7 +33,7 @@
     <div class="col-md-6 m-auto">
       <h5>ユーザー名: <%= @user.name %></h5><br>
       <h5>プロフィール</h5>
-      <h5 class="w-break"><%#=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
+      <h5 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
     </div>
   </div>
 </div>
