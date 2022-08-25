@@ -1,51 +1,51 @@
 <tbody>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-2">
-      <h3>検索</h3>
-      <%= search_form_for @article_search  do |f| %>
-        <%= f.search_field :title_cont, placeholder: 'タイトル検索' %>
-        <%= f.submit '検索' %><br>
-        <%= f.collection_check_boxes :categories_id_in, Category.all, :id ,:name %>
-        <%= f.select( :sorts, { '並び替え': '並び替え', '古い順': 'updated_at asc', '新しい順': 'updated_at desc', 'いいね!の多い順': 'likes_count asc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} ) %>
-        <br>
-      <% end %>
-
-      <br><hr>
-      <thead>
-      <% if @article_search.present? %>
-        <p>表示件数は：<%= @count %>件です</p>
-      <% end %>
-      </thead>
-    </div>
-
-    <div class="col-10">
-      <div class="card-deck">
-        <% @articles.each do |article| %>
-          <div class="col-3">
-            <div class="card">
-              <% if article.image? %>
-                <%= link_to (image_tag article.image.url, class: 'mx-auto d-block'), article %>
-              <% else %>
-                <%= link_to (image_tag 'no_image.png', size: '300x200', class: 'mx-auto d-block'), article %>
-              <% end %>
-              <p><%= article.title %></p>
-              <p>
-              <% article.categories.each do |category| %>
-                <%= category.name %>
-              <% end %>
-              </p>
-              <p><%= link_to article.user.name, user_path(article.user), class: "link-to" %></p>
-              <p>更新日時:<%= article.updated_at.strftime("%Y/%m/%d") %></p>
-              <p><i class="fa fa-heart unlike-btn"></i><%= article.liked_users.count %></p>
-            </div>
-          </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2">
+        <h3>検索</h3>
+        <%= search_form_for @article_search  do |f| %>
+          <%= f.search_field :title_cont, placeholder: 'タイトル検索' %>
+          <%= f.submit '検索' %><br>
+          <%= f.collection_check_boxes :categories_id_in, Category.all, :id ,:name %>
+          <%= f.select( :sorts, { '並び替え': '並び替え', '古い順': 'updated_at asc', '新しい順': 'updated_at desc', 'いいね!の多い順': 'likes_count asc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} ) %>
+          <br>
         <% end %>
+
+        <br><hr>
+        <thead>
+        <% if @article_search.present? %>
+          <p>表示件数：<%= @count %>件</p>
+        <% end %>
+        </thead>
+      </div>
+
+      <div class="col-10">
+        <div class="card-deck">
+          <% @articles.each do |article| %>
+            <div class="col-3">
+              <div class="card">
+                <% if article.image? %>
+                  <%= link_to (image_tag article.image.url, size: '100x100', class: 'mx-auto d-block'), article %>
+                <% else %>
+                  <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'mx-auto d-block'), article %>
+                <% end %>
+                <p><%= article.title %></p>
+                <p>
+                <% article.categories.each do |category| %>
+                  <%= category.name %>
+                <% end %>
+                </p>
+                <p><%= link_to article.user.name, user_path(article.user), class: "link-to" %></p>
+                <p>更新日時:<%= article.updated_at.strftime("%Y/%m/%d") %></p>
+                <p><i class="fa fa-heart unlike-btn"></i><%= article.liked_users.count %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </tbody>
 <div class="col-12">
-<div class='p-top__paginate'><%= paginate(@articles) %></div>
+  <div class='p-top__paginate'><%= paginate(@articles) %></div>
 </div>
