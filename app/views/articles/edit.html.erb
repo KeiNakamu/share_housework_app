@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row">
     <h1 class="mt-5">編集</h1>
+    <%= link_to '詳細画面へ戻る', @article, class: "btn btn-success mt-5 mb-5 ml-5" %>
   </div>
 </div>
 
 <div class="container">
   <div class="row mb-5">
     <%= render 'form', article: @article %>
-    <%= link_to '詳細画面へ', @article %>
+    
   </div>
 </div>
