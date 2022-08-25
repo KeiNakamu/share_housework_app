@@ -1,8 +1,17 @@
-<p>フォロー一覧</p>
-<%= link_to "フォロワー", followers_user_path(@user) %>
-<p><%= @user.following.count %>フォロー</p><br>
-<% @users.each do |user| %>
-  <%= link_to user.name, user, class: "link-to" %>
-<%= render 'follow_form', user: user %>
-<% end %>
-<br>
+<div class="container">
+  <div class="row">
+    <h3>フォロー一覧</h3>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    <%= link_to "フォロワー", followers_user_path(@user) %>
+    <p><%= @user.following.count %>フォロー</p><br>
+    <% @users.each do |user| %>
+      <%= link_to user.name, user, class: "link-to" %>
+    <%= render 'follow_form', user: user %>
+    <% end %>
+    <br>
+  </div>
+</div>
