@@ -9,6 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <div class="main-container" style="background:url(<%= asset_path 'file5.png' %>); background-size:cover; background-position:center " >
   <body>
   <nav class="navbar sticky-top navbar-light bg-light">
   <a class="navbar-brand" href="#">ロゴ</a>
@@ -49,14 +50,14 @@
     <% if alert %>
       <p class="alert alert-error"><%= alert %></p>
     <% end %>
-
-    <div class="background">
     <%= yield %>
-
-    <%= link_to "Back", 'javascript:history.back()' %>
     </div>
-    <footer class="footer text-center">
-      - footer -
-    </footer>
   </body>
+  </div>
+      <footer class="footer bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: rgba(0, 100, 0, 0.2) ;">
+        <p>&copy;Place sticky footer content here.</p>
+      </div>
+    </footer>
+
 </html>

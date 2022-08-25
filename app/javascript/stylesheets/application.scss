@@ -18,6 +18,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'likes';
 @import 'favorites';
+@import 'articles';
+
 
 .w-break{
   word-wrap: break-all;
@@ -28,4 +30,12 @@ textarea {
   resize: none;
   width:300px;
   height:200px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #44aa33;
 }

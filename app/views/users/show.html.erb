@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row m-auto">
     <% if user_signed_in? && @user == current_user %>
       <h1>マイページ</h1>
     <% else %>
@@ -13,8 +13,8 @@
   <div class="row">
     <% if user_signed_in? && @user == current_user %>
       <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
-      <%= @user.following.count %><%= link_to "フォロー", followings_user_path(@user) %><br>
-      <%= @user.followers.count %><%= link_to "フォロワー", followers_user_path(@user) %><br>
+      <%= link_to "フォロー", followings_user_path(@user) %><br>
+      <%= link_to "フォロワー", followers_user_path(@user) %><br>
       <%= link_to "お気に入り", article_favorites_path(@user) %>
     <% end %>
   </div>
@@ -28,10 +28,12 @@
       <% else %>
         <%= image_tag 'icon.jpeg', class: 'profile_image' %>
       <% end %>
+      <h5>プロフィール画像</h5>
     </div>
-    <div class="col-md-6 ">
-      <h5>ユーザー名: <%= @user.name %></h5>
-      <h5 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
+    <div class="col-md-6 m-auto">
+      <h5>ユーザー名: <%= @user.name %></h5><br>
+      <h5>プロフィール</h5>
+      <h5 class="w-break"><%#=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
     </div>
   </div>
 </div>
