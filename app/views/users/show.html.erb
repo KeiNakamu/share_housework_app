@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row m-auto">
     <% if user_signed_in? && @user == current_user %>
       <h1>マイページ</h1>
@@ -9,13 +9,13 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container my-5">
   <div class="row">
     <% if user_signed_in? && @user == current_user %>
-      <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %><br>
-      <%= link_to "フォロー", followings_user_path(@user) %><br>
-      <%= link_to "フォロワー", followers_user_path(@user) %><br>
-      <%= link_to "お気に入り", article_favorites_path(@user) %>
+      <a class= "mr-3"><%= link_to "プロフィール編集", edit_user_registration_path(current_user), class: "btn btn-success" %></a>
+      <a class= "mr-3"><%= link_to "フォロー", followings_user_path(@user), class: "btn btn-info" %></a>
+      <a class= "mr-3"><%= link_to "フォロワー", followers_user_path(@user), class: "btn btn-info" %></a>
+      <a class= "mr-3"><%= link_to "お気に入り", article_favorites_path(@user), class: "btn btn-primary" %></a>
     <% end %>
   </div>
 </div>
@@ -24,9 +24,9 @@
   <div class="row">
     <div class="col-md-3">
       <% if @user.image? %>
-        <%= image_tag @user.image.url, class: 'profile_image' %>
+        <%= image_tag @user.image.url, class: 'profile_image',size: '200x200' %>
       <% else %>
-        <%= image_tag 'icon.jpeg', class: 'profile_image' %>
+        <%= image_tag 'icon.jpeg', class: 'profile_image', size: '200x200' %>
       <% end %>
       <h5>プロフィール画像</h5>
     </div>
@@ -41,16 +41,16 @@
 </div>
 
 
-<h4 class="profile text-center"><%= @user.name %>さんの投稿</h4>
+<h4 class="profile text-center mb-5">↓ <%= @user.name %>さんの投稿 ↓</h4>
 <% @user.articles.each do |article| %>
-<div class="container">
-  <div class="card mb-4 text-center", style="height: 100px" >
+<div class="container mb-5">
+  <div class="card mb-4 text-center", style="height: 150px" >
     <div class="row no-gutters">
       <div class="col-md-4">
         <% if article.image? %>
-          <%= link_to (image_tag article.image.url, class: 'mx-auto d-block'), article %>
+          <%= link_to (image_tag article.image.url, size: '100x100', class: 'm-auto d-block'), article %>
         <% else %>
-          <%= link_to (image_tag 'no_image.png', size: '300x200', class: 'mx-auto d-block'), article %>
+          <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'm-auto d-block'), article %>
         <% end %>
       </div>
       <div class="col-md-4">
