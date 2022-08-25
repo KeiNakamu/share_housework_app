@@ -15,7 +15,6 @@
   </div>
 </div>
 
-
 <div class="container">
   <div class="row">
     <h3><%= @article.title %></h3>
@@ -38,22 +37,24 @@
   </div>
 </div>
 
-<div class="container mt-5">
-    <h3>手順</h3>
-    <div class="row">
-    <% @procedures.each.with_index(1) do |procedure, index|%>
-      <h4><%= '手順'"#{index}" %></h4>
-      <p>
-        <% if procedure.image? %>
-          <%= image_tag procedure.image.url, class: "procedure_image", size: '200x200' %>
-        <% else %>
-          <%= image_tag 'no_image.png', size: '200x200', class: 'procedure_image' %>
-        <% end %>
-      </p>
-      <p>
-        <h5 class="m-auto"><%=safe_join(procedure.content.split("\n"),tag(:br))%></h5>
-      </p>
-    <% end %>
+<div class="container col-md-12 mt-5">
+  <h3>手順</h3>
+  <div class="row">
+      <% @procedures.each.with_index(1) do |procedure, index|%>
+          <div class="col-md-3">
+        <h4><%= '手順'"#{index}" %></h4>
+        <p>
+          <% if procedure.image? %>
+            <%= image_tag procedure.image.url, class: "procedure_image", size: '200x200' %>
+          <% else %>
+            <%= image_tag 'no_image.png', size: '200x200', class: 'procedure_image' %>
+          <% end %>
+        </p>
+        <p>
+          <h5 class="m-auto"><%=safe_join(procedure.content.split("\n"),tag(:br))%></h5>
+        </p>
+    </div>
+      <% end %>
   </div>
 </div>
 
