@@ -19,9 +19,9 @@
   <div class="row col-md-8 mx-auto">
     <h3><%= @article.title %></h3>
     <% if @article.image? %>
-      <%= image_tag @article.image.url, class: "article_image", size: '500x300' %>
+      <%= image_tag @article.image.url, class: "article_image", size: '300x300' %>
     <% else %>
-      <%= image_tag 'no_image.png', size: '500x300', class: "article_image" %>
+      <%= image_tag 'no_image.png', size: '300x300', class: "article_image" %>
     <% end %>
   <p>
   </div>
@@ -72,7 +72,7 @@
     <% end %>
 
 <div class="container mt-5">
-  <div class="row col-md-8 mx-auto">
+  <div class="row col-md-10 mx-auto">
     <% if user_signed_in? %>
       <div id = "favorite_<%= @article.id %>" class="mr-3">
         <%= render partial: 'favorites/favorite', locals: { article: @article } %>
@@ -82,10 +82,10 @@
         <%= render partial: "likes/like", locals: { article: @article } %>
       </div>
 
-      <p>投稿者:<%= link_to @article.user.name, user_path(@article.user) %></p>
+      <p class="mr-3">投稿者:<%= link_to @article.user.name, user_path(@article.user) %></p>
 
     <% if user_signed_in? && @article.user == current_user %>
-      <a class= "mr-3" ><%= link_to '編集', edit_article_path(@article), class: "btn btn-success"%></a>
+      <a class= "mr-2" ><%= link_to '編集', edit_article_path(@article), class: "btn btn-success"%></a>
       <a class= "mr-3" ><%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></a>
     <% end %>
 
@@ -96,7 +96,7 @@
   </div>
 </div>
 
-<div class="container mt-5 mb-5">
+<div class="container mt-5" style=" margin-bottom: 200px;">
   <div class="row col-md-8 mx-auto">
     <p>コメント一覧</p>
 

@@ -20,6 +20,7 @@
 @import 'favorites';
 @import 'articles';
 @import 'devise';
+@import 'users';
 
 
 .w-break{
@@ -30,10 +31,11 @@
 textarea {
   resize: none;
   width:300px;
-  height:200px;
+  height:100px;
 }
 
 footer {
+  // margin-top: auto;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -42,5 +44,5 @@ footer {
 }
 
 ::placeholder {
-  color:rgb(63, 211, 248);
+  // color:rgb(63, 211, 248);
 }

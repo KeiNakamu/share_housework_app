@@ -11,7 +11,7 @@
 
   <body>
   <nav class="navbar sticky-top navbar-light bg-light">
-  <a class="navbar-brand" href="#">ロゴ</a>
+  <a class="navbar-brand "> <%= link_to "WISDOM", root_path %></a>
     <%= link_to "ホーム", root_path %>
     <% if user_signed_in? %>
       <% if current_user.admin? %>
@@ -47,15 +47,15 @@
       <p class="alert alert-notice"><%= notice %></p>
     <% end %>
     <% if alert %>
-      <p class="alert alert-error"><%= alert %></p>
+      <p class="alert alert-error text-center"><%= alert %></p>
     <% end %>
     <%= yield %>
     </div>
-  </body>
+
       <footer class="footer bg-light text-center text-lg-start">
-      <div class="text-center pb-1" style="background-color: rgba(200, 100, 0, 0.2) ;">
+      <div class="text-center pb-3" style="background-color: rgba(200, 100, 0, 0.2) ;">
         <p>&copy;Place sticky footer content here.</p>
       </div>
     </footer>
-
+  </body>
 </html>
