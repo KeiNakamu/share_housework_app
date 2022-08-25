@@ -9,7 +9,7 @@ ja:
         title: タイトル
         image: サムネイル
         category: カテゴリ
-        date: 日付
+        date: 作業日
         deadline: 期限
       user:
         title: タイトル
