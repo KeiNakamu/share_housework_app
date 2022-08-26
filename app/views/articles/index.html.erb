@@ -1,28 +1,27 @@
 <tbody>
-  <div class="container-fluid">
+  <div class="container-fluid col-12">
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <h3>検索</h3>
         <%= search_form_for @article_search  do |f| %>
           <%= f.search_field :title_cont, placeholder: 'タイトル検索' %>
           <%= f.submit '検索' %><br>
           <%= f.collection_check_boxes :categories_id_in, Category.all, :id ,:name %>
           <%= f.select( :sorts, { '並び替え': '並び替え', '古い順': 'updated_at asc', '新しい順': 'updated_at desc', 'いいね!の多い順': 'likes_count asc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} ) %>
-          <br>
         <% end %>
 
         <br><hr>
         <thead>
-        <% if @article_search.present? %>
-          <p>表示件数：<%= @count %>件</p>
-        <% end %>
+          <% if @article_search.present? %>
+            <p>表示件数：<%= @count %>件</p>
+          <% end %>
         </thead>
       </div>
 
-      <div class="col-10">
+      <div class="col-9">
         <div class="card-deck">
           <% @articles.each do |article| %>
-            <div class="col-3">
+            <div class="col-4">
               <div class="card">
                 <% if article.image? %>
                   <%= link_to (image_tag article.image.url, size: '100x100', class: 'mx-auto d-block'), article %>
@@ -46,6 +45,5 @@
     </div>
   </div>
 </tbody>
-<div class="col-12">
-  <div class='p-top__paginate'><%= paginate(@articles) %></div>
+  <div class='p-top__paginate' style="margin-bottom: 300px;"><%= paginate(@articles) %>
 </div>

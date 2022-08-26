@@ -71,7 +71,7 @@
         </div>
       <% end %>
 
-      <div class="add-botton-box">
+      <div class="add-botton-box my-4">
         <%= link_to_add_association "手順を追加", form, :procedures,
         class: 'add_fields' 'btn btn-info',
         id: 'add-btn',
@@ -85,7 +85,7 @@
       <div id="detail-association-insertion-point"></div>
 
       <div class="actions">
-        <%= form.submit "投稿する", class: 'btn btn-primary' %>
+        <%= form.submit "投稿する", class: 'btn btn-primary', style:" margin-bottom: 200px;" %>
       </div>
     <% end %>
   </div>
