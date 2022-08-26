@@ -1,20 +1,38 @@
-<h2>お気に入り一覧</h2>
+<header>
+  <div class="jumbotron text-center hero " style="background:url(<%= asset_path 'file6.jpg' %>); background-size:cover; background-position:center bottom;">
+    <div class="container">
+      <h2 class="favorites mb-3">お気に入りの記事をストックしてみよう</h2>
+      <h4 class="favorites mt-5">↓ お気に入り一覧はこちら ↓</h4>
+    </div>
+  </div>
+</header>
 
+<div class="container">
+  <div class="row col-md-12 justify-content-center">
+    <table>
+      <thead>
+        <tr>
+          <th>サムネイル</th>
+          <th>タイトル</th>
+          <th>ユーザー</th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-  </thead>
-
-  <tbody>
-    <% @favorites.each do |favorite| %>
-
-      <tr>
-        <td class="image">
-        <%= link_to (image_tag favorite.article.image.url if favorite.article.present?), favorite.article %></td>
-        <td><%= favorite.article.title %></td>
-        <td><%= link_to favorite.article.user.name, user_path(favorite.user),class: "link-to" %></td>
-        <td>投稿日:<%= favorite.article.created_at.strftime("%Y/%m/%d") %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @favorites.each do |favorite| %>
+          <tr>
+            <td class="image">
+            <% if favorite.article.image? %>
+              <%= link_to (image_tag favorite.article.image.url, size: '100x100'), favorite.article %>
+            <% else %>
+              <%= link_to (image_tag 'no_image.png', size: '100x100'), favorite.article %>
+            <% end %>
+            <td><%= favorite.article.title %></td>
+            <td><%= link_to favorite.article.user.name, user_path(favorite.user),class: "link-to" %></td>
+            <td>投稿日:<%= favorite.article.created_at.strftime("%Y/%m/%d") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
