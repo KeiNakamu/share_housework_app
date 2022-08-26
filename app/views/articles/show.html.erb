@@ -15,21 +15,20 @@
   </div>
 </div>
 
-
 <div class="container">
-  <div class="row">
+  <div class="row col-md-8 mx-auto">
     <h3><%= @article.title %></h3>
     <% if @article.image? %>
-      <%= image_tag @article.image.url, class: "article_image", size: '500x300' %>
+      <%= image_tag @article.image.url, class: "article_image", size: '300x300' %>
     <% else %>
-      <%= image_tag 'no_image.png', size: '500x300', class: "article_image" %>
+      <%= image_tag 'no_image.png', size: '300x300', class: "article_image" %>
     <% end %>
   <p>
   </div>
 </div>
 
 <div class="container mt-5">
-  <div class="row">
+  <div class="row col-md-8 mx-auto">
       <h4 class="mr-3">カテゴリ:</h4>
       <% @article.categories.each do |category| %>
         <h4 class="mr-3">□<%= category.name %></h4>
@@ -38,27 +37,28 @@
   </div>
 </div>
 
-<div class="container mt-5">
-    <h3>手順</h3>
-    <div class="row">
-    <% @procedures.each.with_index(1) do |procedure, index|%>
-      <h4><%= '手順'"#{index}" %></h4>
-      <p>
-        <% if procedure.image? %>
-          <%= image_tag procedure.image.url, class: "procedure_image", size: '200x200' %>
-        <% else %>
-          <%= image_tag 'no_image.png', size: '200x200', class: 'procedure_image' %>
-        <% end %>
-      </p>
-      <p>
-        <h5 class="m-auto"><%=safe_join(procedure.content.split("\n"),tag(:br))%></h5>
-      </p>
-    <% end %>
+<div class="container col-md-12 mx-auto text-center">
+  <div class="row">
+      <% @procedures.each.with_index(1) do |procedure, index|%>
+          <div class="col-md-3 mx-auto">
+        <h4><%= '手順'"#{index}" %></h4>
+        <p>
+          <% if procedure.image? %>
+            <%= image_tag procedure.image.url, class: "procedure_image", size: '200x200' %>
+          <% else %>
+            <%= image_tag 'no_image.png', size: '200x200', class: 'procedure_image' %>
+          <% end %>
+        </p>
+        <p>
+          <h5 class="m-auto"><%=safe_join(procedure.content.split("\n"),tag(:br))%></h5>
+        </p>
+    </div>
+      <% end %>
   </div>
 </div>
 
 <div class="container mt-5">
-  <div class="row">
+  <div class="row col-md-8 mx-auto">
     <% if @article.status == 'private' %>
     <p>
       <h5>作業日:</h5>
@@ -72,7 +72,7 @@
     <% end %>
 
 <div class="container mt-5">
-  <div class="row">
+  <div class="row col-md-10 mx-auto">
     <% if user_signed_in? %>
       <div id = "favorite_<%= @article.id %>" class="mr-3">
         <%= render partial: 'favorites/favorite', locals: { article: @article } %>
@@ -82,10 +82,10 @@
         <%= render partial: "likes/like", locals: { article: @article } %>
       </div>
 
-      <p>投稿者:<%= link_to @article.user.name, user_path(@article.user) %></p>
+      <p class="mr-3">投稿者:<%= link_to @article.user.name, user_path(@article.user) %></p>
 
     <% if user_signed_in? && @article.user == current_user %>
-      <a class= "mr-3" ><%= link_to '編集', edit_article_path(@article), class: "btn btn-success"%></a>
+      <a class= "mr-2" ><%= link_to '編集', edit_article_path(@article), class: "btn btn-success"%></a>
       <a class= "mr-3" ><%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></a>
     <% end %>
 
@@ -96,8 +96,8 @@
   </div>
 </div>
 
-<div class="container mt-5 mb-5">
-  <div class="row">
+<div class="container mt-5" style=" margin-bottom: 200px;">
+  <div class="row col-md-8 mx-auto">
     <p>コメント一覧</p>
 
     <div id="comments_area">

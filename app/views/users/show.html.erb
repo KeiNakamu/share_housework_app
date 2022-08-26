@@ -41,25 +41,22 @@
 </div>
 
 
-<h4 class="profile text-center mb-5">↓ <%= @user.name %>さんの投稿 ↓</h4>
-<% @user.articles.each do |article| %>
-<div class="container mb-5">
-  <div class="card mb-4 text-center", style="height: 150px" >
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <% if article.image? %>
-          <%= link_to (image_tag article.image.url, size: '100x100', class: 'm-auto d-block'), article %>
-        <% else %>
-          <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'm-auto d-block'), article %>
-        <% end %>
-      </div>
-      <div class="col-md-4">
-        <div class="card-body">
-          <h3><%= article.title %></h3>
-          <p>更新日:<%= article.updated_at.strftime("%Y/%m/%d") %></p>
+<h4 class="profile text-center">↓ <%= @user.name %>さんの投稿 ↓</h4>
+<div class="container mb-4", style=" margin-bottom: 1000px;">
+  <% @user.articles.each do |article| %>
+    <div class="card mb-4 text-center", style="height: 130px" >
+      <div class="row no-gutters">
+        <div class="col-md-3">
+          <% if article.image? %>
+            <%= link_to (image_tag article.image.url, size: '100x100', class: 'm-auto d-block'), article %>
+          <% else %>
+            <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'm-auto d-block'), article %>
+          <% end %>
         </div>
+        <h3 class=" m-auto"><%= article.title %></h3>
+        <p class="m-auto">更新日:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
-<% end %>
+

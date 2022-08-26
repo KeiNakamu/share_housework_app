@@ -4,14 +4,14 @@ class ArticlesController < ApplicationController
 
   def index
     if params[:q].present?
-      @articles = Article.where(status: :public).page(params[:page]).per(12)
+      @articles = Article.where(status: :public).page(params[:page])
       @article_search = @articles.ransack(params[:q])
-      @articles = @article_search.result(distinct: true).order(updated_at: "DESC").page(params[:page]).per(12)
+      @articles = @article_search.result(distinct: true).order(updated_at: "DESC").page(params[:page])
     else
       params[:q] = { sorts: 'updated_at DESC' }
-      @articles = Article.where(status: :public).page(params[:page]).per(12)
+      @articles = Article.where(status: :public).page(params[:page])
       @article_search = @articles.ransack(params[:q])
-      @articles = @article_search.result(distinct: true).order(updated_at: "DESC").page(params[:page]).per(12)
+      @articles = @article_search.result(distinct: true).order(updated_at: "DESC").page(params[:page])
     end
     @count = @articles.total_count
   end

@@ -1,8 +1,30 @@
-<p>フォロー一覧</p>
-<%= link_to "フォロワー", followers_user_path(@user) %>
-<p><%= @user.following.count %>フォロー</p><br>
-<% @users.each do |user| %>
-  <%= link_to user.name, user, class: "link-to" %>
-<%= render 'follow_form', user: user %>
-<% end %>
-<br>
+<header>
+  <div class="jumbotron text-center hero " style="background:url(<%= asset_path 'file6.jpg' %>); background-size:cover; background-position:center bottom;">
+    <div class="container">
+      <h2 class="followings mb-3">共有仲間を増やしていこう！</h2>
+      <p class="followings">↓ フォロワー 一覧はこちら ↓</p>
+      <%= link_to "フォロワー", followers_user_path(@user), class: "btn btn-primary" %>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row col-md-10 justify-content-center">
+    <h3>フォロー一覧</h3>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row col-md-10 justify-content-center">
+    <p><%= @user.following.count %>フォロー</p><br>
+  </div>
+</div>
+
+<div class="container">
+  <% @users.each do |user| %>
+  <div class="row col-md-10 justify-content-center my-3">
+    <%= link_to user.name, user, class: "link-to" %>
+    <%= render 'follow_form', user: user %>
+  <% end %>
+  </div>
+</div>
