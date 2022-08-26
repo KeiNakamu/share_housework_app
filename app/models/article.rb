@@ -20,4 +20,8 @@ class Article < ApplicationRecord
     query = '(SELECT COUNT(likes.article_id) FROM likes where likes.article_id = articles.id GROUP BY likes.article_id)'
     Arel.sql(query)
   end
+
+  validates :title, presence: true
+  validates :status, presence: true
+  validates :procedures, associated: true
 end
