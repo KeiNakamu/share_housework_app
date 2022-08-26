@@ -1,3 +1,9 @@
+<div class="container mt-5">
+  <div class="row col-md-8 mx-auto">
+    <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
+</div>
+
 <div class="box-one">
   <div class="box-inner">
     <div class="container mt-5">
@@ -9,7 +15,6 @@
     <div class="container col-md-12">
       <div class="row col-md-6 mx-auto">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="field mt-5">
             <%= f.label :name %><br />
@@ -35,7 +40,7 @@
           </div>
 
           <div class="actions my-5">
-            <%= f.submit t('.sign_up'), class: "btn btn-primary" %>
+            <%= f.submit t('.sign_up'), class: "btn btn-primary", style: "margin-bottom: 300px;" %>
           </div>
         <% end %>
       </div>

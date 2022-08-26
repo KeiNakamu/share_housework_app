@@ -34,7 +34,7 @@
 
       <p>投稿した内容をシェアする場合は、[公開]を,タスク管理として利用する場合は[非公開]を選択してください</p>
 
-      <div class="field mb-5">
+      <div class="field mb-5" id="article_status_id">
           <%= form.select :status, Article.statuses.map { |k, v| [t("article.status.#{k}"), k] }, selected: @article.status %>
       </div>
 

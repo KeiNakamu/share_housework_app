@@ -21,7 +21,7 @@ class Article < ApplicationRecord
     Arel.sql(query)
   end
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 255 }
   validates :status, presence: true
   validates :procedures, associated: true
 end

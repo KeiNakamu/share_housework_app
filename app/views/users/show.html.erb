@@ -48,9 +48,9 @@
       <div class="row no-gutters">
         <div class="col-md-3">
           <% if article.image? %>
-            <%= link_to (image_tag article.image.url, size: '100x100', class: 'm-auto d-block'), article %>
+            <%= link_to (image_tag article.image.url, size: '100x100', class: 'm-auto d-block'), article, alt: 'Image' %>
           <% else %>
-            <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'm-auto d-block'), article %>
+            <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'm-auto d-block'), article, alt: 'Image' %>
           <% end %>
         </div>
         <h3 class=" m-auto"><%= article.title %></h3>
