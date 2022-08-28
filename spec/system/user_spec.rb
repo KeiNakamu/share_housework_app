@@ -23,13 +23,23 @@ RSpec.describe 'ユーザ登録、セッション機能、管理画面のテス�
         click_button 'ログイン'
         expect(page).to have_content 'ログインしました'
       end
-
       it 'マイページに遷移する' do
         visit new_user_session_path
         fill_in 'user[email]', with: 'test@example.com'
         fill_in 'user[password]', with: 'password'
         click_button 'ログイン'
         expect(page).to have_content 'マイページ'
+      end
+      it 'プロフィール編集ができる' do
+        visit new_user_session_path
+        fill_in 'user[email]', with: 'test@example.com'
+        fill_in 'user[password]', with: 'password'
+        click_button 'ログイン'
+        click_on 'プロフィール編集'
+        fill_in 'user[name]', with: 'test'
+        fill_in 'user[profile]', with: 'こんにちは'
+        click_button '更新'
+        expect(page).to have_content 'こんにちは'
       end
     end
 
