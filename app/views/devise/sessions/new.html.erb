@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box" style=" margin-bottom: 200px;">
   <div class="box-inner">
     <div class="container mt-5">
       <div class="row col-md-8 mx-auto">
@@ -34,6 +34,10 @@
           </div>
         <% end %>
       </div>
+    </div>
+    <div>
+      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path,class: "m-2 btn btn-info", method: :post %>
+      <%= link_to '管理者ゲストログイン', users_admin_guest_sign_in_path,class: "m-2 btn btn-info", method: :post %>
     </div>
   </div>
 </div>

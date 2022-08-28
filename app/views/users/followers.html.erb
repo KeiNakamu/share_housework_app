@@ -1,12 +1,10 @@
-<header>
-  <div class="jumbotron text-center hero " style="background:url(<%= asset_path 'file6.jpg' %>); background-size:cover; background-position:center bottom;">
-    <div class="container">
-      <h2 class="followers mb-3">共有仲間を増やしていこう！</h2>
-      <p class="followers">↓ フォロー 一覧はこちら ↓</p>
-      <%= link_to "フォロー", followings_user_path(@user), class: "btn btn-primary" %>
-    </div>
+<div class="jumbotron text-center hero " style="background:url(<%= asset_path 'file6.jpg' %>); background-size:cover; background-position:center bottom;">
+  <div class="container">
+    <h2 class="followers mb-3">共有仲間を増やしていこう！</h2>
+    <p class="followers">↓ フォロー 一覧はこちら ↓</p>
+    <%= link_to "フォロー", followings_user_path(@user), class: "btn btn-primary" %>
   </div>
-</header>
+</div>
 
 <div class="container">
   <div class="row col-md-10 justify-content-center">
