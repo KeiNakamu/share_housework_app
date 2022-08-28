@@ -16,8 +16,8 @@
 </div>
 
 <div class="container">
-  <div class="row col-md-8 mx-auto">
-    <h3><%= @article.title %></h3>
+  <h3 class="title mb-4">タイトル：<%= @article.title %></h3>
+    <div class="row col-md-8 mx-auto">
     <% if @article.image? %>
       <%= image_tag @article.image.url, class: "article_image", size: '300x300' %>
     <% else %>
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div class="container mt-5">
+<div class="container my-5">
   <div class="row col-md-8 mx-auto">
       <h4 class="mr-3">カテゴリ:</h4>
       <% @article.categories.each do |category| %>
@@ -41,7 +41,7 @@
   <div class="row">
       <% @procedures.each.with_index(1) do |procedure, index|%>
           <div class="col-md-3 mx-auto">
-        <h4><%= '手順'"#{index}" %></h4>
+        <h4>No.<%= "#{index}" %></h4>
         <p>
           <% if procedure.image? %>
             <%= image_tag procedure.image.url, class: "procedure_image", size: '200x200' %>

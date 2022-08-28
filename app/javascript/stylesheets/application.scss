@@ -22,8 +22,17 @@
 @import 'devise';
 @import 'users';
 
+.navbar {
+  background: #d9d9d9;
+}
 
-.w-break{
+.navbar-brand-item img {
+  height: 50px;
+  width:150px;
+  object-fit: contain
+}
+
+.w-break {
   word-wrap: break-all;
   overflow: auto;
 }
@@ -35,12 +44,11 @@ textarea {
 }
 
 footer {
-  // margin-top: auto;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #44aa33;
+  background: #d9d9d9;
 }
 
 .top-jumbotron {

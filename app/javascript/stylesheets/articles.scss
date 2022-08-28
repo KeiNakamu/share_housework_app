@@ -3,23 +3,17 @@
   text-decoration: none;
 }
 
-// .article_image{
-//   width: 15%;
-//   height: 15%;
-// }
-
-// .procedure_image{
-//   width: 20%;
-//   height: 10%;
-// }
-
-// .confirm_article_image{
-//   width: 20%;
-//   height: 10%;
-// }
-
-// .profile_image{
-//   width: 30%;
-//   height: 20%;
-// }
+.img_wrap{
+  border: 1px solid #ddd;
+  transition-duration: 0.5s;
+}
+.img_wrap img{
+  width: 100%;
+  cursor: pointer;
+}
+.img_wrap:hover{
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.5s;
+}
 

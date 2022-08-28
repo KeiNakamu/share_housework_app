@@ -10,37 +10,55 @@
   </head>
 
   <body>
-    <nav class="navbar sticky-top navbar-light bg-light">
-      <a class="navbar-brand pt-5"> <%= link_to "WISDOM", root_path %></a>
+    <nav class="navbar sticky-top navbar-light">
+      <div class="navbar-brand">
+          <%= link_to (image_tag (asset_path'file7.png')), root_path, class: "navbar-brand-item" %>
+      </div>
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <%= link_to '管理者画面', rails_admin_path  %>
+          <%= link_to '管理者画面', rails_admin_path, class: "btn btn-danger"  %>
         <% end %>
-        <%= link_to "マイページ", user_path(current_user.id) %>
-        <%= link_to "投稿する", new_article_path %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-info" %>
+        <%= link_to "投稿する", new_article_path, class: "btn btn-outline-info" %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %>
       <% else %>
-        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
-        <%= link_to '管理者ゲストログイン', users_admin_guest_sign_in_path, method: :post %>
-        <%= link_to "アカウント登録", new_user_registration_path %>
-        <%= link_to "ログイン", new_user_session_path %>
+        <%= link_to "アカウント登録", new_user_registration_path, class: "m-2 btn btn-primary" %>
+        <%= link_to "ログイン", new_user_session_path, class: "m-2 btn btn-primary" %>
       <% end %>
     </nav>
 
     <% if current_page?(root_path) || current_page?(articles_path) %>
       <header>
-  <div class="jumbotron text-center hero " style="background:url(<%= asset_path 'file6.jpg' %>); background-size:cover; background-position:center bottom;">
+        <div class="jumbotron text-center hero " style="background:url(<%= asset_path 'file6.jpg' %>); background-size:cover; background-position:center bottom;">
           <div class="container">
-            <h3 class="top-jumbotron">"WISDOM"とは"知恵"という意味です</h3>
-            <h4 class="top-jumbotron mt-4">このアプリを通して日頃の家事についての小技や豆知識を共有してみましょう</h4>
-            <h5 class="top-jumbotron mt-5">情報を共有して効率化を目指してみましょう</h5>
+            <h4 class="top-jumbotron my-4">
+              料理、洗濯、掃除などには手間がかかりますが,少しの工夫で時短や効率化を実現することができます
+            </h4>
+            <h4 class="top-jumbotron">
+              ぜひ、当アプリを利用して家事の時短、効率化に取り組んでみてください
+            </h4>
             <% unless user_signed_in? %>
-              <%= link_to "いますぐサインアップする", new_user_registration_path, class: "btn btn-primary" %>
+              <div>
+                <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path,class: "m-2 btn btn-info", method: :post %>
+                <%= link_to '管理者ゲストログイン', users_admin_guest_sign_in_path,class: "m-2 btn btn-info", method: :post %>
+              </div>
+              <div>
+                <%= link_to "アカウント登録", new_user_registration_path, class: "m-2 btn btn-primary" %>
+                <%= link_to "ログイン", new_user_session_path, class: "m-2 btn btn-primary" %>
+              </div>
             <% end %>
           </div>
         </div>
       </header>
     <% end %>
+
+  <% if current_page?(new_user_session_path) %>
+    <div class="jumbotron text-center hero " style="background:url(<%= asset_path 'file6.jpg' %>); background-size:cover; background-position:center bottom;">
+      <div class="container">
+        <h2 class="log-in mb-3">ログイン画面</h2>
+      </div>
+    </div>
+  <% end %>
 
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>
@@ -51,8 +69,8 @@
     <%= yield %>
     </div>
 
-      <footer class="footer bg-light text-center text-lg-start">
-      <div class="text-center pb-3" style="background-color: rgba(200, 100, 0, 0.2) ;">
+      <footer class="footer text-center text-lg-start">
+      <div class="text-center pb-3" >
         <p>&copy;Place sticky footer content here.</p>
       </div>
     </footer>
