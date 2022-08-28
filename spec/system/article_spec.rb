@@ -42,7 +42,8 @@ RSpec.describe '記事機能', type: :system do
         click_link 'マイページ'
         find(:xpath, '/html/body/div[4]/div[1]/div/div/a').click
         click_on '編集'
-        fill_in 'article[title]', with:'test2'
+        fill_in "article[date]", with: DateTime.now
+        fill_in "article[deadline]", with: DateTime.now
         click_button '投稿する'
         expect(page).to have_content '投稿した記事を更新しました'
       end
