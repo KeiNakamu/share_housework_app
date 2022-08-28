@@ -21,7 +21,7 @@
 <div class="container">
   <% @users.each do |user| %>
   <div class="row col-md-10 justify-content-center my-3">
-    <%= link_to user.name, user, class: "link-to" %>
+    <%= link_to user.name, user, class: "link-to mr-3" %>
     <%= render 'follow_form', user: user %>
   <% end %>
   </div>
