@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
-        format.html { redirect_to article_path(@article), notice: '投稿できませんでした...アカウント登録もしくはログインはしましたか？' }
+        format.html { redirect_to article_path(@article), notice: '投稿できませんでした...' }
       end
     end
   end

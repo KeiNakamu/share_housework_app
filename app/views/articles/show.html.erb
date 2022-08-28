@@ -17,11 +17,11 @@
 
 <div class="container">
   <h3 class="title mb-4">タイトル：<%= @article.title %></h3>
-    <div class="row col-md-8 mx-auto">
+    <div class="row col-md-6 mx-auto">
     <% if @article.image? %>
-      <%= image_tag @article.image.url, class: "article_image", size: '300x300' %>
+      <%= image_tag @article.image.url, class: "article_image" %>
     <% else %>
-      <%= image_tag 'no_image.png', size: '300x300', class: "article_image" %>
+      <%= image_tag 'no_image.png', class: "article_image" %>
     <% end %>
   <p>
   </div>

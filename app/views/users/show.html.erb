@@ -13,9 +13,9 @@
   <div class="row">
     <% if user_signed_in? && @user == current_user %>
       <a class= "mr-3"><%= link_to "プロフィール編集", edit_user_registration_path(current_user), class: "btn btn-success" %></a>
-      <a class= "mr-3"><%= link_to "フォロー", followings_user_path(@user), class: "btn btn-info" %></a>
-      <a class= "mr-3"><%= link_to "フォロワー", followers_user_path(@user), class: "btn btn-info" %></a>
-      <a class= "mr-3"><%= link_to "お気に入り", article_favorites_path(@user), class: "btn btn-primary" %></a>
+      <a class= "mr-3"><%= link_to "フォロー", followings_user_path(@user), class: "btn btn-primary" %></a>
+      <a class= "mr-3"><%= link_to "フォロワー", followers_user_path(@user), class: "btn btn-primary" %></a>
+      <a class= "mr-3"><%= link_to "お気に入り", article_favorites_path(@user), class: "btn btn-warning" %></a>
     <% end %>
   </div>
 </div>
