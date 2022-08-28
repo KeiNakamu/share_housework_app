@@ -7,21 +7,21 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # User
-admin_user = User.create(name: "中村", email: "test@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile1.png"), admin: true)
+admin_user = User.create(name: "中村", email: "test@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile1.png"), profile: "当アプリの主です。\r\nこのアプリを盛り上げていくぞ〜!", admin: true)
 
 User.create([
-  { name: "青野", email: "test2@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile2.png")},
-  { name: "遠藤", email: "test3@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile3.png")},
-  { name: "門脇", email: "test4@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile4.png")},
-  { name: "金子", email: "test5@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile5.png")},
-  { name: "齋藤", email: "test6@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile6.png")},
-  { name: "佐藤", email: "test7@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile7.png")},
-  { name: "鈴木", email: "test8@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile8.png")},
-  { name: "西川", email: "test9@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile9.png")},
-  { name: "丸岡", email: "test10@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile10.png")},
-  { name: "森塚", email: "test11@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile11.png")},
-  { name: "山田", email: "test12@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile12.png")},
-  { name: "吉田", email: "test13@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile13.png")}
+  { name: "青野", email: "test2@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile2.png"), profile: "こんにちは、よろしく"},
+  { name: "遠藤", email: "test3@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile3.png"), profile: "こんにちは、よろしく"},
+  { name: "門脇", email: "test4@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile4.png"), profile: "こんにちは、よろしく"},
+  { name: "金子", email: "test5@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile5.png"), profile: "こんにちは、よろしく"},
+  { name: "齋藤", email: "test6@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile6.png"), profile: "こんにちは、よろしく"},
+  { name: "佐藤", email: "test7@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile7.png"), profile: "こんにちは、よろしく"},
+  { name: "鈴木", email: "test8@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile8.png"), profile: "こんにちは、よろしく"},
+  { name: "西川", email: "test9@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile9.png"), profile: "こんにちは、よろしく"},
+  { name: "丸岡", email: "test10@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile10.png"), profile: "こんにちは、よろしく"},
+  { name: "森塚", email: "test11@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile11.png"), profile: "こんにちは、よろしく"},
+  { name: "山田", email: "test12@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile12.png"), profile: "こんにちは、よろしく"},
+  { name: "吉田", email: "test13@email.com", password: "1234567", image: File.open("./app/assets/images/profile_images/profile13.png"), profile: "こんにちは、よろしく"}
 ])
 User.guest
 User.admin_guest
@@ -116,14 +116,21 @@ Article.create!([
 ])
 
 # like
-3.times do |n|
+2.times do |n|
   User.all.ids.each do |user_id|
     Like.create(user_id: user_id, article_id: rand(1..5))
   end
 end
 
+# favorite
+2.times do |n|
+  User.all.ids.each do |user_id|
+    Favorite.create(user_id: user_id, article_id: rand(1..5))
+  end
+end
+
 # comment
-3.times do |n|
+2.times do |n|
   User.all.each do |user|
     Comment.create(user_id: user.id, article_id: rand(1..5), content: "次の投稿待ってます")
   end
