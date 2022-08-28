@@ -116,23 +116,23 @@ Article.create!([
 ])
 
 # like
-2.times do |n|
+5.times do |n|
   User.all.ids.each do |user_id|
     Like.create(user_id: user_id, article_id: rand(1..5))
   end
 end
 
 # favorite
-2.times do |n|
+5.times do |n|
   User.all.ids.each do |user_id|
     Favorite.create(user_id: user_id, article_id: rand(1..5))
   end
 end
 
 # comment
-2.times do |n|
+5.times do |n|
   User.all.each do |user|
-    Comment.create(user_id: user.id, article_id: rand(1..5), content: "次の投稿待ってます")
+    Comment.create(user_id: user.id, article_id: rand(1..5), content: "コメント")
   end
 end
 
@@ -142,6 +142,42 @@ User.all.ids.each do |followed_id|
     follower_id = "12"
   else
     follower_id = "13"
+  end
+  Relationship.create(followed_id: followed_id, follower_id: follower_id)
+end
+
+User.all.ids.each do |followed_id|
+  if followed_id == 12
+    follower_id = "11"
+  else
+    follower_id = "12"
+  end
+  Relationship.create(followed_id: followed_id, follower_id: follower_id)
+end
+
+User.all.ids.each do |followed_id|
+  if followed_id == 11
+    follower_id = "10"
+  else
+    follower_id = "11"
+  end
+  Relationship.create(followed_id: followed_id, follower_id: follower_id)
+end
+
+User.all.ids.each do |followed_id|
+  if followed_id == 10
+    follower_id = "9"
+  else
+    follower_id = "10"
+  end
+  Relationship.create(followed_id: followed_id, follower_id: follower_id)
+end
+
+User.all.ids.each do |followed_id|
+  if followed_id == 9
+    follower_id = "8"
+  else
+    follower_id = "9"
   end
   Relationship.create(followed_id: followed_id, follower_id: follower_id)
 end

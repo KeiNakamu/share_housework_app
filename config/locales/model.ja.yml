@@ -2,6 +2,12 @@ ja:
   activerecord:
     models:
       article: 記事
+      article_category: 記事とカテゴリの関連テーブル
+      category: カテゴリ
+      comment: コメント
+      favorite: お気に入り
+      like: いいね
+      relationship: フォロー機能
       user: ユーザー
       procedure: 手順
     attributes:
