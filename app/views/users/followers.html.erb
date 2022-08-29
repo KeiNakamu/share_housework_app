@@ -7,22 +7,34 @@
 </div>
 
 <div class="container">
-  <div class="row col-md-10 justify-content-center">
+  <div class="row col-md-12 justify-content-center">
     <h3 class="text-center">フォロワー一覧</h3>
   </div>
 </div>
 
 <div class="container">
-  <div class="row col-md-10 justify-content-center">
+  <div class="row col-md-12 justify-content-center">
     <p><%= @user.followers.count %>フォロー</p>
   </div>
 </div>
 
-<div class="container">
-  <% @users.each do |user| %>
-  <div class="row col-md-10 justify-content-center my-3">
-    <%= link_to user.name, user, class: "link-to mr-3" %>
-    <%= render 'follow_form', user: user %>
-  <% end %>
+<div class="container", style="margin-bottom: 300px;">
+  <div class="row col-md-12 justify-content-center">
+    <table>
+      <tbody>
+        <div class=" mb-4 text-center" >
+          <div class="row no-gutters">
+            <div class="col-md-3">
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= link_to user.name, user, class: "link-to mr-3" %></td>
+                  <td><%= render 'follow_form', user: user %></td>
+                </tr>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </tbody>
+    </table>
   </div>
 </div>

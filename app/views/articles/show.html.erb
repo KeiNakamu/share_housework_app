@@ -17,27 +17,25 @@
 
 <div class="container">
   <h3 class="title mb-4">タイトル：<%= @article.title %></h3>
-    <div class="row col-md-6 mx-auto">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
     <% if @article.image? %>
       <%= image_tag @article.image.url, class: "article_image" %>
     <% else %>
       <%= image_tag 'no_image.png', class: "article_image" %>
     <% end %>
-  <p>
-  </div>
-</div>
+    </div>
 
-<div class="container my-5">
-  <div class="row col-md-8 mx-auto">
+    <div class=" col-md-8 mx-auto">
       <h4 class="mr-3">カテゴリ:</h4>
       <% @article.categories.each do |category| %>
         <h4 class="mr-3">□<%= category.name %></h4>
       <% end %>
-    </p>
-  </div>
+    </div>
+  </div><hr>
 </div>
 
-<div class="container col-md-12 mx-auto text-center">
+<div class="container col-md-9 mx-auto text-center bg-light">
   <div class="row">
       <% @procedures.each.with_index(1) do |procedure, index|%>
           <div class="col-md-3 mx-auto">
