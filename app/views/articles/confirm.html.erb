@@ -1,6 +1,9 @@
 <div class="container mt-5">
   <div class="row col-md-8 mx-auto">
     <h3>以下の内容で、投稿します</h3>
+    <% if @article.status == 'private' %>
+      <h5 class="title mt-5">~ この記事は非公開です ~</h5>
+    <% end %>
   </div>
 </div>
 
@@ -29,29 +32,35 @@
             <%= b.label { b.check_box + b.text } %>
         <% end %>
 
-      <% n = 0 %>
-      <h4 class= "mt-5">入力した内容</h4>
-      <%= form.fields_for :procedures do |procedure| %>
-        <%= procedure.hidden_field :image %>
-        <%= procedure.hidden_field :image_cache %>
-        <%= procedure.hidden_field :content %>
+          <h4 class= "mt-5">入力した内容</h4>
+      <div class="container col-md-9 mx-auto text-center bg-light">
+        <div class="row">
+          <% n = 0 %>
+          <%= form.fields_for :procedures do |procedure| %>
+            <div class="col-md-3 mx-auto">
+            <%= procedure.hidden_field :image %>
+            <%= procedure.hidden_field :image_cache %>
+            <%= procedure.hidden_field :content %>
 
-          <% if procedure.object.image? %>
-          <h4> 手順<%= n += 1 %> </h4>
-            <%= image_tag procedure.object.image.url, class: "procedure_image" %>
-          <% else %>
-            <%= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
+              <% if procedure.object.image? %>
+              <h4> 手順<%= n += 1 %> </h4>
+                <%= image_tag procedure.object.image.url, class: "procedure_image" %>
+              <% else %>
+                <%= image_tag 'no_image.png', size: '300x200', class: 'procedure_image' %>
+              <% end %>
+              <h4><%= procedure.object.content %></h4>
+            </div>
           <% end %>
-          <h4><%= procedure.object.content %></h4>
-      <% end %>
+        </div>
+      </div>
 
-      <% if @article.date? %>
-      <p>作業日:<%= @article.date.strftime("%Y/%m/%d") %></p>
-      <% end %>
+          <% if @article.date? %>
+          <p>作業日:<%= @article.date.strftime("%Y/%m/%d") %></p>
+          <% end %>
 
-      <% if @article.deadline? %>
-      <p>期限:<%= @article.deadline.strftime("%Y/%m/%d") %></p>
-      <% end %>
+          <% if @article.deadline? %>
+          <p>期限:<%= @article.deadline.strftime("%Y/%m/%d") %></p>
+          <% end %>
 
       <%= form.submit  "登録する", class: 'btn btn-primary', style: " margin-bottom: 200px;" %>
 

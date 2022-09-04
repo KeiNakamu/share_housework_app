@@ -32,25 +32,29 @@
         <% end %>
       </div>
 
-      <p>投稿した内容をシェアする場合は [公開] を選択してください。</p>
-      <p>※ [非公開] はToDoリスト、もしくは投稿前の下書き機能のようにお使いください。</p>
-
-      <div class="field mb-5" id="article_status_id">
+      <div class="field mb-2" id="article_status_id">
           <%= form.select :status, Article.statuses.map { |k, v| [t("article.status.#{k}"), k] }, selected: @article.status %>
       </div>
+      <p>投稿：投稿をする</p>
+      <p>下書き：下書きで保存する</p>
+      <p>やること：やることリストとして保存する</p>
 
-      
-      <p>※ 作業日には、作業する(した)日を入力してください</p>
-      <div class="field mb-4">
-        <%= form.label :date %>
-        <p class="description m-0"><%= form.date_field :date %> ※ 非公開を選択時のみ選択してください</p>
-      </div>
+      <div class="box-procedure" style="margin-left: 10px;">
+        <h4 class="ml-5">[ やること ]を選択した場合に入力</h4>
+        <div class="container mt-5">
+          <p>※ 作業日には、作業する(した)日を入力してください</p>
+          <div class="field mb-4">
+            <%= form.label :date %>
+            <p class="description m-0"><%= form.date_field :date %> ※ 非公開を選択時のみ選択してください</p>
+          </div>
 
-        <p>※ 期限には、作業を終わらせたい日を入力してください</p>
+          <p>※ 期限には、作業を終わらせたい日を入力してください</p>
 
-      <div class="field">
-        <%= form.label :deadline %>
-        <p class="description m-0"><%= form.date_field :deadline %> ※ 非公開を選択時のみ選択してください</p>
+          <div class="field">
+            <%= form.label :deadline %>
+            <p class="description m-0"><%= form.date_field :deadline %> ※ 非公開を選択時のみ選択してください</p>
+          </div>
+        </div>
       </div>
 
       <%= form.hidden_field :user_id, :value => current_user.id%>
@@ -86,7 +90,7 @@
       <div id="detail-association-insertion-point"></div>
 
       <div class="actions">
-        <%= form.submit "投稿する", class: 'btn btn-primary', style:" margin-bottom: 200px;" %>
+        <%= form.submit class: 'btn btn-primary', style:" margin-bottom: 200px;" %>
       </div>
     <% end %>
   </div>

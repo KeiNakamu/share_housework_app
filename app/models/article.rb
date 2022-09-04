@@ -13,7 +13,7 @@ class Article < ApplicationRecord
 
   accepts_nested_attributes_for :procedures, allow_destroy: true, reject_if: :all_blank
 
-  enum status: { public: 0, private: 1 }, _prefix: true
+  enum status: { public: 0, draft: 1, private: 2 }, _prefix: true
   validates_associated :procedures
 
   ransacker :likes_count do

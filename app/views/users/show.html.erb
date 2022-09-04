@@ -1,87 +1,132 @@
-<div class="container mt-5">
-  <div class="row m-auto">
-    <% if user_signed_in? && @user == current_user %>
-      <h1>マイページ</h1>
-    <% else %>
-      <h1 class="mr-4"><%= @user.name %>さんのページ</h1>
-      <%= render 'follow_form', user: @user %>
-    <% end %>
-  </div>
-</div>
-
-<div class="container my-5">
+<div class="container-fluid col-md-10">
   <div class="row">
-    <% if user_signed_in? && @user == current_user %>
-      <a class= "mr-3"><%= link_to "プロフィール編集", edit_user_registration_path(current_user), class: "btn btn-success" %></a>
-      <a class= "mr-3"><%= link_to "フォロー", followings_user_path(@user), class: "btn btn-primary" %></a>
-      <a class= "mr-3"><%= link_to "フォロワー", followers_user_path(@user), class: "btn btn-primary" %></a>
-      <a class= "mr-3"><%= link_to "お気に入り", article_favorites_path(@user), class: "btn btn-warning" %></a>
-    <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <% if @user.image? %>
-        <%= image_tag @user.image.url, class: 'profile_image',size: '200x200' %>
-      <% else %>
-        <%= image_tag 'icon.jpeg', class: 'profile_image', size: '200x200' %>
-      <% end %>
-      <h5>プロフィール画像</h5>
-    </div>
-    <div class="col-md-6 m-auto">
-      <h5>ユーザー名: <%= @user.name %></h5><br>
-      <h5>プロフィール</h5>
-      <% if @user.profile? %>
-        <h5 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<h4 class="profile text-center">↓ <%= @user.name %>さんの投稿 ↓</h4>
-<div class="container mb-4">
-  <% @user.articles.each do |article| %>
-    <% if article.status == "public" %>
-      <div class="card mb-4 text-center" >
-        <div class="row no-gutters">
-          <div class="col-md-3">
-            <% if article.image? %>
-              <%= link_to (image_tag article.image.url, size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
-            <% else %>
-              <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
+    <div class="col-ml-md-2 mx-auto">
+      <div class="simple-calendar" style="margin-top: 100px;">
+        <% if @user == current_user %>
+          <%= month_calendar(attribute: :deadline, events: @user.articles) do |date, articles| %>
+            <%= date.day %>
+            <% articles.each do |article| %>
+              <div>
+                <%= link_to article.title, task_article_path(article) %>
+              </div>
             <% end %>
-          </div>
-          <h3 class=" m-auto"><%= article.title %></h3>
-          <p class="m-auto">更新日:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-8 mx-auto">
+      <div class="container mt-5">
+        <div class="row m-auto">
+          <% if user_signed_in? && @user == current_user %>
+            <h1>マイページ</h1>
+          <% else %>
+            <h1 class="mr-4"><%= @user.name %>さんのページ</h1>
+            <%= render 'follow_form', user: @user %>
+          <% end %>
         </div>
       </div>
-    <% end %>
-  <% end %>
-</div>
 
-<% if @user == current_user %>
-<h4 class="profile text-center">↓ <%= @user.name %>さんの投稿(非公開) ↓</h4>
-<div class="container mb-4">
-  <% @user.articles.each do |article| %>
-    <% if article.status == "private" %>
-      <div class="card mb-4 text-center" >
-        <div class="row no-gutters">
-          <div class="col-md-3">
-            <% if article.image? %>
-              <%= link_to (image_tag article.image.url, size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
-            <% else %>
-              <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
-            <% end %>
-          </div>
-          <h3 class=" m-auto"><%= article.title %></h3>
-          <p class="m-auto">更新日:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
+      <div class="container my-5">
+        <div class="row">
+          <% if user_signed_in? && @user == current_user %>
+            <a class= "mr-3"><%= link_to "プロフィール編集", edit_user_registration_path(current_user), class: "btn btn-success" %></a>
+            <a class= "mr-3"><%= link_to "フォロー", followings_user_path(@user), class: "btn btn-primary" %></a>
+            <a class= "mr-3"><%= link_to "フォロワー", followers_user_path(@user), class: "btn btn-primary" %></a>
+            <a class= "mr-3"><%= link_to "お気に入り", article_favorites_path(@user), class: "btn btn-warning" %></a>
+          <% end %>
         </div>
       </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <% if @user.image? %>
+              <%= image_tag @user.image.url, class: 'profile_image',size: '200x200' %>
+            <% else %>
+              <%= image_tag 'icon.jpeg', class: 'profile_image', size: '200x200' %>
+            <% end %>
+            <h5>プロフィール画像</h5>
+          </div>
+          <div class="col-md-6 m-auto">
+            <h5>ユーザー名: <%= @user.name %></h5><br>
+            <h5>プロフィール</h5>
+            <% if @user.profile? %>
+              <h5 class="w-break"><%=safe_join(@user.profile.split("\n"),tag(:br))%></h5>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <h4 class="profile text-center">↓ <%= @user.name %>さんの投稿 ↓</h4>
+      <div class="container mb-4">
+        <% @user.articles.each do |article| %>
+          <% if article.status == "public" %>
+            <div class="card mb-4 text-center" >
+              <div class="row no-gutters">
+                <div class="col-md-3">
+                  <% if article.image? %>
+                    <%= link_to (image_tag article.image.url, size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
+                  <% else %>
+                    <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
+                  <% end %>
+                </div>
+                <h3 class=" m-auto"><%= article.title %></h3>
+                <p class="m-auto">更新日:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% if @user == current_user %>
+        <h4 class="profile text-center">↓ <%= @user.name %>さんの下書き ↓</h4>
+        <div class="container mb-4">
+          <% @user.articles.each do |article| %>
+            <% if article.status == "draft" %>
+              <div class="card mb-4 text-center" >
+                <div class="row no-gutters">
+                  <div class="col-md-3">
+                    <% if article.image? %>
+                      <%= link_to (image_tag article.image.url, size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
+                    <% else %>
+                      <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'img_wrap m-auto d-block'), article, alt: 'Image' %>
+                    <% end %>
+                  </div>
+                  <h3 class=" m-auto"><%= article.title %></h3>
+                  <p class="m-auto">更新日:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       <% end %>
-  <% end %>
+
+
+      <% if @user == current_user %>
+        <h4 class="profile text-center">↓ <%= @user.name %>さんのやることリスト ↓</h4>
+        <div class="container mb-4">
+          <% @user.articles.each do |article| %>
+            <% if article.status == "private" %>
+              <div class="card mb-4 text-center" >
+                <div class="row no-gutters">
+                  <div class="col-md-3">
+                    <% if article.image? %>
+                      <%= link_to (image_tag article.image.url, size: '100x100', class: 'img_wrap m-auto d-block'), task_article_path(article), alt: 'Image' %>
+                    <% else %>
+                      <%= link_to (image_tag 'no_image.png', size: '100x100', class: 'img_wrap m-auto d-block'), task_article_path(article), alt: 'Image' %>
+                    <% end %>
+                  </div>
+                  <h3 class=" m-auto"><%= article.title %></h3>
+                  <p class="m-auto">更新日:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% end %>
 
 <div class="push", style=" margin-bottom: 200px;"></div>

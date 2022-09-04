@@ -1,29 +1,19 @@
 <div class="container mb-5">
   <div class="row">
-    <% if @article.status == 'draft' %>
-      <h3 class="title mt-5">この記事は下書きです</h3>
-    <% end %>
-  </div>
-</div>
-
-<div class="container mb-5">
-  <div class="row">
-    <h3 class="title">記事の詳細ページ</h3>
+    <h3 class="title mt-5 mx-auto">タスク管理用ページです</h3>
   </div>
 </div>
 
 <div class="container-fluid col-md-10">
   <div class="row">
     <div class="col-ml-md-2 mx-auto">
-      <div class="simple-calendar">
-        <% if @user == current_user %>
-          <%= month_calendar(attribute: :deadline, events: @articles) do |date, articles| %>
-            <%= date.day %>
-            <% articles.each do |article| %>
-              <div>
-                <%= link_to article.title, article %>
-              </div>
-            <% end %>
+      <div class="simple-calendar mt-5">
+        <%= month_calendar(attribute: :deadline, events: @articles) do |date, articles| %>
+          <%= date.day %>
+          <% articles.each do |article| %>
+            <div>
+              <%= link_to article.title, task_article_path(article) %>
+            </div>
           <% end %>
         <% end %>
       </div>
@@ -70,38 +60,39 @@
         </div>
       </div>
 
-      <% if @article.status == 'public' %>
-        <div class="container mt-5">
-          <div class="row col-md-8 mx-auto">
-            <div class="container mt-5">
-              <div class="row col-md-10">
-                <% if user_signed_in? %>
-                  <div id = "favorite_<%= @article.id %>" class="mr-3">
-                    <%= render partial: 'favorites/favorite', locals: { article: @article } %>
-                  </div>
+      <div class="container mt-5">
+        <div class="row col-md-10 mx-auto">
+          <% if @article.status == 'private' %>
+            <p>
+              <h5>作業日:</h5>
+              <h6 class="mt-1 mr-3"><%= @article.date.strftime("%Y/%m/%d") %></h4>
+            </p>
 
-                  <div id = "like_<%= @article.id %>" class="mr-3">
-                    <%= render partial: "likes/like", locals: { article: @article } %>
-                  </div>
+            <p>
+              <h5>期限:</h5>
+              <h6 class="mt-1"><%= @article.deadline.strftime("%Y/%m/%d") %></h6>
+            </p>
+          <% end %>
 
-                  <p class="mr-3">投稿者:<%= link_to @article.user.name, user_path(@article.user) %></p>
-
-                  <% unless @article.user_id == current_user.id %>
-                    <%= render 'users/follow_form', user: @article.user %>
-                  <% end %>
+          <div class="container mt-5">
+            <div class="row">
+              <% if user_signed_in? %>
+                <% if user_signed_in? && @article.user == current_user %>
+                  <a class= "mr-2" ><%= link_to '編集', edit_article_path(@article), class: "btn btn-success"%></a>
+                  <a class= "mr-3" ><%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></a>
                 <% end %>
-              </div>
+                <% unless @article.user_id == current_user.id %>
+                  <%= render 'users/follow_form', user: @article.user %>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
-      <% end%>
-      <% if user_signed_in? && @article.user == current_user %>
-        <a class= "ml-5" ><%= link_to '編集', edit_article_path(@article), class: "btn btn-success"%></a>
-        <a class= "ml-3" ><%= link_to '削除', @article, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></a>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
+
 
 <div class="container mt-5" style=" margin-bottom: 200px;">
   <div class="row col-md-8 mx-auto">
