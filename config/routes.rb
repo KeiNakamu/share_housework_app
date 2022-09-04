@@ -24,6 +24,9 @@ Rails.application.routes.draw do
       get :search
       post :confirm
     end
+    member do
+      get :task
+    end
   end
 
   if Rails.env.development?

@@ -1,13 +1,15 @@
 ja:
   article:
     status:
-      private: '非公開'
-      public: '公開'
+      private: やること
+      draft: 下書き
+      public: 投稿
   enums:
     article:
       status:
-        private: '非公開'
-        public: '公開'
+        private: やること
+        draft: 下書き
+        public: 投稿
   activerecord:
     errors:
       messages:

@@ -10,6 +10,8 @@ ja:
       relationship: フォロー機能
       user: ユーザー
       procedure: 手順
+      create: "%{model}作成"
+      update: "%{model}更新"
     attributes:
       article:
         title: タイトル

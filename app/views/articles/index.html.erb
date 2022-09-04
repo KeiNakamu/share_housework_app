@@ -15,29 +15,43 @@
           <% if @article_search.present? %>
             <p>表示件数：<%= @count %>件</p>
           <% end %>
+          <div class="simple-calendar mt-5">
+            <%= month_calendar(attribute: :deadline, events: @articles) do |date, articles| %>
+              <%= date.day %>
+              <% articles.each do |article| %>
+                <div>
+                  <% if articles == current_user.articles.find_by(status: 'private') %>
+                    <%= link_to article.title, task_article_path(article) %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
         </thead>
       </div>
 
       <div class="col-md-9">
         <div class="card-deck">
           <% @articles.each do |article| %>
-            <div class="col-md-3 my-2">
-              <div class="card text-center h-100">
-                <% if article.image? %>
-                  <%= link_to (image_tag article.image.url ,size: '230x200', class: 'img_wrap mx-auto d-block'), article %>
-                <% else %>
-                  <%= link_to (image_tag 'no_image.png', size: '230x200', class: 'img_wrap mx-auto d-block'), article %>
-                <% end %>
-                <p><%= article.title %></p>
-                <p>
-                <% article.categories.each do |category| %>
-                  <%= category.name %>
-                <% end %>
-                </p>
-                <p><%= link_to article.user.name, user_path(article.user), class: "link-to" %></p>
-                <p>更新日時:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
+            <% if article.status == "public" %>
+              <div class="col-md-3 my-2">
+                <div class="card text-center h-100">
+                  <% if article.image? %>
+                    <%= link_to (image_tag article.image.url ,size: '230x200', class: 'img_wrap mx-auto d-block'), article %>
+                  <% else %>
+                    <%= link_to (image_tag 'no_image.png', size: '230x200', class: 'img_wrap mx-auto d-block'), article %>
+                  <% end %>
+                  <p><%= article.title %></p>
+                  <p>
+                  <% article.categories.each do |category| %>
+                    <%= category.name %>
+                  <% end %>
+                  </p>
+                  <p><%= link_to article.user.name, user_path(article.user), class: "link-to" %></p>
+                  <p>更新日時:<%= article.updated_at.strftime("%Y/%m/%d") %><i class="fa fa-heart unlike-btn ml-4"></i><%= article.liked_users.count %></p>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
       </div>

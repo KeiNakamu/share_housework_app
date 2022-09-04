@@ -14,13 +14,13 @@
  *= require_self
  */
 
-
 @import '~bootstrap/scss/bootstrap';
 @import 'likes';
 @import 'favorites';
 @import 'articles';
 @import 'devise';
 @import 'users';
+@import 'calendar';
 
 .navbar {
   background: #d9d9d9;
@@ -45,8 +45,8 @@ img {
 
 textarea {
   resize: none;
-  width:800px;
-  height:100px;
+  width:500px;
+  height:150px;
 }
 
 footer {

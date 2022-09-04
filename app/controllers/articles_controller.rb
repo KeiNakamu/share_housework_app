@@ -1,22 +1,34 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :set_article, only: %i[ show task edit update destroy ]
   before_action :authenticate_user!, only: %i[ new edit update destroy ]
 
   def index
     if params[:q].present?
-      @articles = Article.where(status: :public).page(params[:page])
+      @articles = Article.all.page(params[:page])
       @article_search = @articles.ransack(params[:q])
       @articles = @article_search.result(distinct: true).order(updated_at: "DESC").page(params[:page])
     else
       params[:q] = { sorts: 'updated_at DESC' }
-      @articles = Article.where(status: :public).page(params[:page])
+      @articles = Article.all.page(params[:page])
       @article_search = @articles.ransack(params[:q])
       @articles = @article_search.result(distinct: true).order(updated_at: "DESC").page(params[:page])
     end
-    @count = @articles.total_count
+    @count = @articles.where(status:'public').total_count
   end
 
   def show
+    @articles = Article.all
+    @procedures = @article.procedures
+    @comments = @article.comments
+    @comment = @article.comments.build
+    @favorite = current_user.favorites.find_by(article_id: @article.id) if  user_signed_in?
+    if @article.status_private? && @article.user != current_user
+      redirect_to articles_path, notice: 'このページは非公開のためアクセスできません'
+    end
+  end
+
+  def task
+    @articles = Article.all
     @procedures = @article.procedures
     @comments = @article.comments
     @comment = @article.comments.build
